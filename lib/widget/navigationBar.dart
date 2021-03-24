@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:curved_bottom_navigation/curved_bottom_navigation.dart';
-import 'package:gomalgy/screens/navigatBottom/all_products.dart';
-import 'package:gomalgy/screens/navigatBottom/shop_card.dart';
-import '../screens/navigatBottom/home.dart';
+import 'package:gomalgy/screens/naviation_bottom/ViewModel.dart';
+import 'package:gomalgy/screens/naviation_bottom/all_products.dart';
+import 'package:gomalgy/screens/naviation_bottom/home.dart';
+import 'package:gomalgy/screens/naviation_bottom/shop_card.dart';
+import 'package:gomalgy/screens/naviation_bottom/user_navigation.dart';
 
 class Navigat extends StatefulWidget {
   @override
@@ -18,8 +20,10 @@ class _NavigatState extends State<Navigat> {
         index: navPos,
         children: [
           Home(),
+          ViewModel(),
           AllProducts(),
           ShopCard(),
+          UserNav(),
         ],
       ),
       Align(
@@ -37,10 +41,10 @@ class _NavigatState extends State<Navigat> {
             },
             items: [
               Icon(Icons.home, color: Colors.white),
+              Icon(Icons.view_module_rounded, color: Colors.white),
               Icon(Icons.search, color: Colors.white),
               Icon(Icons.shopping_cart, color: Colors.white),
-              // Icon(Icons.notifications, color: Colors.white),
-              // Icon(Icons.settings, color: Colors.white),
+              Icon(Icons.account_circle_sharp, color: Colors.white),
             ],
           ))
     ]);
