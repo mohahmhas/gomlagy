@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gomalgy/widget/custom_appBar.dart';
 import 'package:gomalgy/widget/navigationBar.dart';
-import 'package:gomalgy/widget/text_fields.dart';
 import './widget/drawer.dart';
 
 class MainPgae extends StatefulWidget {
