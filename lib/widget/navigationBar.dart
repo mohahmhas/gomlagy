@@ -25,6 +25,8 @@ class _NavigatState extends State<Navigat> {
       Align(
           alignment: Alignment.bottomCenter,
           child: CurvedBottomNavigation(
+            navHeight: 50,
+            fabSize: 50,
             bgColor: Theme.of(context).primaryColor,
             fabBgColor: Theme.of(context).primaryColor,
             selected: navPos,
