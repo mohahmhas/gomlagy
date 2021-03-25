@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gomalgy/screens/outhantication/regist.dart';
+import 'package:gomalgy/screens/outhantication/send_code.dart';
+
 import 'package:gomalgy/widget/text_filed_outh.dart';
 
-class SendCode extends StatefulWidget {
-  static String id = 'SendCode';
+class LoginScreen extends StatefulWidget {
+  static String id = 'LoginScreen';
   @override
-  _SendState createState() => _SendState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _SendState extends State<SendCode> {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -98,10 +100,10 @@ class _SendState extends State<SendCode> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              //  Navigator.pushNamed(context, ForgotPasswoed.id);
+                              Navigator.pushNamed(context, SendCode.id);
                             },
                             child: Text(
-                              'Forgot Passwoed?',
+                              'Forgot Passwored',
                               style: TextStyle(color: Colors.red, fontSize: 16),
                             ),
                           ),
@@ -112,7 +114,12 @@ class _SendState extends State<SendCode> {
                             onTap: () {
                               Navigator.pushNamed(context, RegisterScreen.id);
                             },
-                          )
+                            child: Text(
+                              'No account yet Create one',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 16),
+                            ),
+                          ),
                         ],
                       ),
                     ),

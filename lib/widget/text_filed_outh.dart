@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextFields extends StatelessWidget {
+class TextFieldsOuth extends StatelessWidget {
   final String hint;
   final IconData icon;
   final Function onClick;
@@ -18,7 +18,7 @@ class TextFields extends StatelessWidget {
     }
   }
 
-  TextFields({this.onClick, @required this.hint, this.icon});
+  TextFieldsOuth({this.onClick, @required this.hint, @required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,9 @@ class TextFields extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Padding(
             padding:
-                const EdgeInsets.only(top: 32.0, bottom: 0, right: 8, left: 8),
+                const EdgeInsets.only(top: 15.0, bottom: 0, right: 8, left: 8),
             child: Container(
-              height: 40,
+              height: 60,
               child: TextFormField(
                 // ignore: missing_return
                 validator: (value) {
@@ -46,22 +46,22 @@ class TextFields extends StatelessWidget {
                     color: Colors.black,
                   ), //icon
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Colors.grey,
                   hintText: hint,
 
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueGrey),
+                    borderSide: BorderSide(color: Colors.grey[600]),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueGrey),
+                    borderSide: BorderSide(color: Colors.grey[600]),
                   ),
                   errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
+                    borderSide: BorderSide(color: Colors.grey[600]),
                   ),
                   border: InputBorder.none,
 
                   labelStyle: TextStyle(
-                    color: Colors.white70,
+                    color: Colors.black,
                   ),
                 ),
               ),

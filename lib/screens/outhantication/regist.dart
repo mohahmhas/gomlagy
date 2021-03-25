@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/screens/outhantication/regist.dart';
 import 'package:gomalgy/widget/text_filed_outh.dart';
 
-class SendCode extends StatefulWidget {
-  static String id = 'SendCode';
+class RegisterScreen extends StatefulWidget {
+  static String id = 'RegisterScreen';
   @override
-  _SendState createState() => _SendState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _SendState extends State<SendCode> {
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -67,12 +66,16 @@ class _SendState extends State<SendCode> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TextFieldsOuth(
+                            icon: Icons.lock,
+                            hint: 'Name',
+                          ),
+                          TextFieldsOuth(
                             icon: Icons.email_outlined,
-                            hint: 'Enter Your email',
+                            hint: ' Email',
                           ),
                           TextFieldsOuth(
                             icon: Icons.lock,
-                            hint: 'Enter Your password',
+                            hint: 'Password',
                           ),
                           SizedBox(
                             height: height * 0.04,
@@ -90,28 +93,11 @@ class _SendState extends State<SendCode> {
                                     // Bottom Logins
                                   },
                                   child: Center(
-                                      child: Center(child: Text('SING IN')))),
+                                      child: Center(child: Text('SING UP')))),
                             ),
                           ),
                           SizedBox(
-                            height: height * 0.03,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              //  Navigator.pushNamed(context, ForgotPasswoed.id);
-                            },
-                            child: Text(
-                              'Forgot Passwoed?',
-                              style: TextStyle(color: Colors.red, fontSize: 16),
-                            ),
-                          ),
-                          SizedBox(
-                            height: height * 0.03,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, RegisterScreen.id);
-                            },
+                            height: height * 0.01,
                           )
                         ],
                       ),

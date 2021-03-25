@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gomalgy/screens/outhantication/log_screen.dart';
+import 'package:gomalgy/screens/outhantication/regist.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -36,7 +38,22 @@ class CustomDrawer extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       top: 10,
                     ),
-                    child: Text('SIGN IN /REGISTER'),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, LoginScreen.id);
+                          },
+                          child: Text('SIGN IN '),
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, RegisterScreen.id);
+                            },
+                            child: Text('/REGISTER'))
+                      ],
+                    ),
                   ),
                 ],
               ),
