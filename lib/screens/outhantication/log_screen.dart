@@ -11,6 +11,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String _email, _password;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -42,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
+          //*********************************************************** */
           Padding(
             padding: const EdgeInsets.only(bottom: 0),
             child: Stack(
@@ -61,75 +64,105 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          TextFieldsOuth(
-                            icon: Icons.email_outlined,
-                            hint: 'Enter Your email',
-                          ),
-                          TextFieldsOuth(
-                            icon: Icons.lock,
-                            hint: 'Enter Your password',
-                          ),
-                          SizedBox(
-                            height: height * 0.04,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 25, right: 25),
-                            child: Container(
-                              height: height * 0.06,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Theme.of(context).primaryColor,
-                                    textStyle: TextStyle(color: Colors.white),
-                                  ),
-                                  onPressed: () {
-                                    // Bottom Logins
-                                  },
-                                  child: Center(
-                                      child: Center(child: Text('SING IN')))),
+                //=========================Login text and bouttom
+                Form(
+                  key: formKey,
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TextFieldsOuth(
+                              onClick: (value) {
+                                _email = value;
+                              },
+                              icon: Icons.email_outlined,
+                              hint: 'Enter Your email',
                             ),
-                          ),
-                          SizedBox(
-                            height: height * 0.03,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, SendCode.id);
-                            },
-                            child: Text(
-                              'Forgot Passwored',
-                              style: TextStyle(color: Colors.red, fontSize: 16),
+                            TextFieldsOuth(
+                              onClick: (value) {
+                                _email = value;
+                              },
+                              icon: Icons.lock,
+                              hint: 'Enter Your password',
                             ),
-                          ),
-                          SizedBox(
-                            height: height * 0.03,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, RegisterScreen.id);
-                            },
-                            child: Text(
-                              'No account yet Create one',
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 16),
+                            SizedBox(
+                              height: height * 0.04,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 25, right: 25),
+                              child: Container(
+                                height: height * 0.06,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Theme.of(context).primaryColor,
+                                      textStyle: TextStyle(color: Colors.white),
+                                    ),
+                                    onPressed: () {
+                                      // Bottom Logins
+                                      _validate(context);
+                                    },
+                                    child: Center(
+                                        child: Center(child: Text('SING IN')))),
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.03,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, SendCode.id);
+                              },
+                              child: Text(
+                                'Forgot Passwored',
+                                style:
+                                    TextStyle(color: Colors.red, fontSize: 16),
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.03,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, RegisterScreen.id);
+                              },
+                              child: Text(
+                                'No account yet Create one',
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 16),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
               ],
+              //==============================================================
             ),
           ),
         ],
       ),
     );
+  }
+
+  void _validate(BuildContext context) async {
+    if (formKey.currentState.validate()) {
+      formKey.currentState.save();
+    } else {
+      try {
+        // await _auth.signIn(_email.trim(), _password.trim());
+        // Navigator.pushReplacementNamed(context, HomePage.id);
+      } catch (e) {
+        // modelHud.changeIsLoading(false);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(e.massage),
+        ));
+      }
+    }
   }
 }

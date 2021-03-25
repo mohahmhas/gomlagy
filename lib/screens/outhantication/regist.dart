@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gomalgy/widget/text_filed_outh.dart';
 
+//C:\Users\moham\AppData\Local\Android\Sdk\.temp\PackageOperation02\unzip\platform-tools
 class RegisterScreen extends StatefulWidget {
   static String id = 'RegisterScreen';
   @override
@@ -8,6 +9,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String _email, _password;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -58,51 +61,63 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-                Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          TextFieldsOuth(
-                            icon: Icons.lock,
-                            hint: 'Name',
-                          ),
-                          TextFieldsOuth(
-                            icon: Icons.email_outlined,
-                            hint: ' Email',
-                          ),
-                          TextFieldsOuth(
-                            icon: Icons.lock,
-                            hint: 'Password',
-                          ),
-                          SizedBox(
-                            height: height * 0.04,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 25, right: 25),
-                            child: Container(
-                              height: height * 0.06,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Theme.of(context).primaryColor,
-                                    textStyle: TextStyle(color: Colors.white),
-                                  ),
-                                  onPressed: () {
-                                    // Bottom Logins
-                                  },
-                                  child: Center(
-                                      child: Center(child: Text('SING UP')))),
+                Form(
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TextFieldsOuth(
+                              icon: Icons.lock,
+                              hint: 'Name',
                             ),
-                          ),
-                          SizedBox(
-                            height: height * 0.01,
-                          )
-                        ],
+                            TextFieldsOuth(
+                              onClick: (value) {
+                                _email = value;
+                              },
+                              icon: Icons.email_outlined,
+                              hint: ' Email',
+                            ),
+                            TextFieldsOuth(
+                              onClick: (value) {
+                                _password = value;
+                              },
+                              icon: Icons.lock,
+                              hint: 'Password',
+                            ),
+                            SizedBox(
+                              height: height * 0.04,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 25, right: 25),
+                              child: Container(
+                                height: height * 0.06,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Theme.of(context).primaryColor,
+                                      textStyle: TextStyle(color: Colors.white),
+                                    ),
+                                    onPressed: () {
+                                      // Bottom Logins
+                                      if (formKey.currentState.validate()) {
+                                        formKey.currentState.save();
+                                      }
+                                    },
+                                    child: Center(
+                                        child: Center(child: Text('SING UP')))),
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
               ],
             ),

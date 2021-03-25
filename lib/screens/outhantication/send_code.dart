@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/screens/outhantication/regist.dart';
 import 'package:gomalgy/widget/text_filed_outh.dart';
 
 class SendCode extends StatefulWidget {
@@ -19,12 +18,16 @@ class _SendState extends State<SendCode> {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 50),
-                child: Center(
-                    child: Text(
-                  'My Account',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                )),
+                padding: const EdgeInsets.only(top: 50, left: 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Gomlgy',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 150,
@@ -32,9 +35,13 @@ class _SendState extends State<SendCode> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    'SING IN',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 50, left: 10, bottom: 10),
+                    child: Text(
+                      'Send Code',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
                   ),
                 ],
               ),
@@ -68,11 +75,7 @@ class _SendState extends State<SendCode> {
                         children: [
                           TextFieldsOuth(
                             icon: Icons.email_outlined,
-                            hint: 'Enter Your email',
-                          ),
-                          TextFieldsOuth(
-                            icon: Icons.lock,
-                            hint: 'Enter Your password',
+                            hint: 'Email',
                           ),
                           SizedBox(
                             height: height * 0.04,
@@ -90,29 +93,9 @@ class _SendState extends State<SendCode> {
                                     // Bottom Logins
                                   },
                                   child: Center(
-                                      child: Center(child: Text('SING IN')))),
+                                      child: Center(child: Text('CONFIRM')))),
                             ),
                           ),
-                          SizedBox(
-                            height: height * 0.03,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              //  Navigator.pushNamed(context, ForgotPasswoed.id);
-                            },
-                            child: Text(
-                              'Forgot Passwoed?',
-                              style: TextStyle(color: Colors.red, fontSize: 16),
-                            ),
-                          ),
-                          SizedBox(
-                            height: height * 0.03,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, RegisterScreen.id);
-                            },
-                          )
                         ],
                       ),
                     ),
