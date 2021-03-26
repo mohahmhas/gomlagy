@@ -4,6 +4,7 @@ import 'package:gomalgy/screens/outhantication/log_screen.dart';
 import 'package:gomalgy/screens/outhantication/regist.dart';
 import 'package:gomalgy/screens/outhantication/send_code.dart';
 
+//wellcom
 void main() {
   runApp(MyApp());
 }
