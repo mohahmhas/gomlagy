@@ -1,8 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
-import 'package:gomalgy/helpers/http_exception.dart';
-import 'package:http/http.dart' as http;
 
 class ImageSlider {
   final String id;
