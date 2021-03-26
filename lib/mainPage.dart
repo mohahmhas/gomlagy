@@ -19,10 +19,16 @@ class _MainPgaeState extends State<MainPgae> {
         key: drawerKey,
         drawer: CustomDrawer(),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomAppBar(drawerKey: drawerKey), //appBar
-            Positioned(bottom: 0, child: Navigat()), //Navigaation
+            Expanded(
+              child: CustomAppBar(drawerKey: drawerKey),
+              flex: 1,
+            ), //appBar
+            Expanded(
+              child: Navigat(),
+              flex: 4,
+            ), //Navigaation
           ],
         ),
       ),
