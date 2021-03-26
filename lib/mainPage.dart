@@ -22,7 +22,7 @@ class _MainPgaeState extends State<MainPgae> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomAppBar(drawerKey: drawerKey), //appBar
-            Navigat(), //Navigaation
+            Positioned(bottom: 0, child: Navigat()), //Navigaation
           ],
         ),
       ),
