@@ -10,21 +10,13 @@ class MainPgae extends StatefulWidget {
 }
 
 class _MainPgaeState extends State<MainPgae> {
-  final GlobalKey<ScaffoldState> drawerKey =
-      GlobalKey<ScaffoldState>(); //drawer
+//drawer
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        key: drawerKey,
         drawer: CustomDrawer(),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomAppBar(drawerKey: drawerKey), //appBar
-            Positioned(bottom: 0, child: Navigat()), //Navigaation
-          ],
-        ),
+        body: Navigat(),
       ),
     );
   }
