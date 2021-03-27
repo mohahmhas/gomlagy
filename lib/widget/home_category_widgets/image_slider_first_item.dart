@@ -17,7 +17,7 @@ class SliderWidget extends ConsumerWidget {
     //sliderData.fetchAndSetProducts();
 
     return FutureBuilder(
-        future: sliderData.fetchAndSetProducts(),
+        future: sliderData.fetchAndSetSliderData(),
         builder: (ctx, snaptshot) {
           if (snaptshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();

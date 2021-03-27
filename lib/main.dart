@@ -4,6 +4,7 @@ import 'package:gomalgy/mainPage.dart';
 import 'package:gomalgy/screens/outhantication/log_screen.dart';
 import 'package:gomalgy/screens/outhantication/regist.dart';
 import 'package:gomalgy/screens/outhantication/send_code.dart';
+import 'package:gomalgy/widget/product_card/product_cart_%20horizontal.dart';
 
 //wellcom
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           RegisterScreen.id: (context) => RegisterScreen(),
           SendCode.id: (context) => SendCode(),
         },
-        home: MainPgae(),
+        home: ProductCardHorizental(),
       ),
     );
   }
