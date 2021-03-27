@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomalgy/widget/rating.dart';
 import '../../helpers/base_url.dart' as baseurl;
 
 class ProductCardHorizental extends StatelessWidget {
@@ -7,9 +8,12 @@ class ProductCardHorizental extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Card(
+      body: Container(
+        height: 150,
+        width: 150,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Center(
               child: Container(
@@ -31,6 +35,14 @@ class ProductCardHorizental extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
+            Text('ddd'),
+            Row(
+              children: [
+                Rating(
+                  itemSize: 11,
+                ),
+              ],
+            )
           ],
         ),
       ),

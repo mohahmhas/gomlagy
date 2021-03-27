@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../reating.dart';
+import '../rating.dart';
 
 class ProductItemVertical extends StatelessWidget {
   final String name;
