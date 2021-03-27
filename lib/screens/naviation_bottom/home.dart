@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
         top: 130,
       ),
       child: Container(
-          color: Colors.yellow,
+          color: Colors.white,
           height: MediaQuery.of(context).size.height - 180,
           child: SingleChildScrollView(
             child: Container(

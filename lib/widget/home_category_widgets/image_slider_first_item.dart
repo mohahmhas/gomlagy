@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gomalgy/providers/home_categories.dart' as homeCat;
 import 'package:flutter_images_slider/flutter_images_slider.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 final imageSlider = ChangeNotifierProvider<homeCat.ImagesSlider>((ref) {
   return homeCat.ImagesSlider();
@@ -78,7 +79,36 @@ class _SliderWidgetViewState extends State<SliderWidgetView> {
     print('widget.imgList');
     return widget.imgList == null || widget.imgList.length == 0
         ? CircularProgressIndicator()
-        : ImagesSlider(
+        : Column(children: <Widget>[
+            CarouselSlider(
+              options: CarouselOptions(
+                height: MediaQuery.of(context).size.height * 0.20,
+                autoPlay: true,
+                enlargeCenterPage: false,
+              ),
+              items: map<Widget>(widget.imgList, (index, i) {
+                print('object');
+                print(i);
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 0.20),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(i), fit: BoxFit.fill)),
+                      // child: Text(
+                      //   'text $i',
+                      //   style: TextStyle(fontSize: 16.0),
+                      // ),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
+          ]);
+
+    /*ImagesSlider(
             items: map<Widget>(widget.imgList, (index, i) {
               print('object');
               print(i);
@@ -88,10 +118,10 @@ class _SliderWidgetViewState extends State<SliderWidgetView> {
                         image: NetworkImage(i), fit: BoxFit.cover)),
               );
             }),
-            autoPlay: true,
-            viewportFraction: 1.0,
-            aspectRatio: 2.0,
-            distortion: false,
+            // autoPlay: true,
+            // viewportFraction: 1.0,
+            // aspectRatio: 2.0,
+            // distortion: false,
             align: IndicatorAlign.bottom,
             indicatorWidth: 5,
             updateCallback: (index) {
@@ -100,6 +130,6 @@ class _SliderWidgetViewState extends State<SliderWidgetView> {
                 _current = index;
               });
             },
-          );
+          );*/
   }
 }
