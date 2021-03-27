@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../models/home_categories_model.dart';
 import 'package:http/http.dart' as http;
 import '../helpers/http_exception.dart';
+import '../helpers/base_url.dart' as baseurl;
 
 class ImagesSlider with ChangeNotifier {
   List<ImageSlider> _items = [];
@@ -15,8 +16,8 @@ class ImagesSlider with ChangeNotifier {
     return [..._items];
   }
 
-  Future<List> fetchAndSetProducts() async {
-    var url = 'https://www.gomlgy.com/api/v1/offers';
+  Future<List> fetchAndSetSliderData() async {
+    var url = baseurl.Urls.api + '/offers';
 
     try {
       final response = await http.get(url);
