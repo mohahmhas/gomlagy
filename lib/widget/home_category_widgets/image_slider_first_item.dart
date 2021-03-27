@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gomalgy/providers/home_categories.dart' as homeCat;
-import 'package:flutter_images_slider/flutter_images_slider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 final imageSlider = ChangeNotifierProvider<homeCat.ImagesSlider>((ref) {

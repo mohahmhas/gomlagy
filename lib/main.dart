@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           RegisterScreen.id: (context) => RegisterScreen(),
           SendCode.id: (context) => SendCode(),
         },
-        home: ProductCardHorizental(),
+        home: MainPgae(),
       ),
     );
   }

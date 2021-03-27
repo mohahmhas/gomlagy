@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gomalgy/widget/home_category_widgets/image_slider_first_item.dart';
+import 'package:gomalgy/widget/home_category_widgets/product_best_selling.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -18,6 +19,7 @@ class Home extends StatelessWidget {
                 children: [
                   SliderWidget(),
                   Row(),
+                  PestSilling(),
                 ],
               ),
             ),
