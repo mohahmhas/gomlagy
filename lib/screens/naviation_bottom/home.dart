@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomalgy/widget/home_category_widgets/image_slider_first_item.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -10,93 +11,16 @@ class Home extends StatelessWidget {
       child: Container(
           color: Colors.yellow,
           height: MediaQuery.of(context).size.height - 180,
-          child: ListView(
-            children: [
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
+          child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SliderWidget(),
+                  Row(),
+                ],
               ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-              ListTile(
-                title: Text('Home'),
-                subtitle: Text('Home dfdfhdghdghdghdghdghdg'),
-                leading: Icon(Icons.ac_unit),
-                trailing: Icon(Icons.ac_unit),
-              ),
-            ],
+            ),
           )),
     );
   }

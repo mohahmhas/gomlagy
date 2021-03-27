@@ -5,7 +5,8 @@ import 'package:gomalgy/screens/naviation_bottom/all_products.dart';
 import 'package:gomalgy/screens/naviation_bottom/home.dart';
 import 'package:gomalgy/screens/naviation_bottom/shop_card.dart';
 import 'package:gomalgy/screens/naviation_bottom/user_navigation.dart';
-import 'package:gomalgy/widget/custom_appBar.dart';
+import '../widget/custom_appBar.dart';
+import 'package:gomalgy/widget/drawer.dart';
 
 class Navigat extends StatefulWidget {
   @override
@@ -19,6 +20,7 @@ class _NavigatState extends State<Navigat> {
     final GlobalKey<ScaffoldState> drawerKey = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: drawerKey,
+      drawer: CustomDrawer(),
       body: Stack(children: [
         CustomAppBar(drawerKey: drawerKey),
         IndexedStack(

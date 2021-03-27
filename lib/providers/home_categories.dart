@@ -15,7 +15,7 @@ class ImagesSlider with ChangeNotifier {
     return [..._items];
   }
 
-  Future<void> fetchAndSetProducts() async {
+  Future<List> fetchAndSetProducts() async {
     var url = 'https://www.gomlgy.com/api/v1/offers';
 
     try {
@@ -27,7 +27,7 @@ class ImagesSlider with ChangeNotifier {
         throw HttpException('An error occurred');
       }
       if (extractedData == null) {
-        return;
+        return [];
       }
       // extractedData.forEach((id, data) {
       // final prodactData = jsonDecode(json.encode(data));
@@ -41,14 +41,14 @@ class ImagesSlider with ChangeNotifier {
               updatedat: sliderData['updated_at'],
               createdat: sliderData['created_at']))
           .toList();
-      print(productsData[0]);
+      // print(productsData[0]);
       productsData.forEach((element) {
         print(element.offerimagepath);
       });
-      _items = productsData;
+      //  _items = productsData;
       // });
-
-      notifyListeners();
+      return productsData;
+      // notifyListeners();
     } catch (e) {
       print(e);
       throw HttpException('An error occurred');

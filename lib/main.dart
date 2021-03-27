@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gomalgy/mainPage.dart';
 import 'package:gomalgy/screens/outhantication/log_screen.dart';
 import 'package:gomalgy/screens/outhantication/regist.dart';
@@ -13,17 +14,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.orange[900],
+    return ProviderScope(
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Colors.orange[900],
+        ),
+        routes: {
+          LoginScreen.id: (context) => LoginScreen(),
+          RegisterScreen.id: (context) => RegisterScreen(),
+          SendCode.id: (context) => SendCode(),
+        },
+        home: MainPgae(),
       ),
-      initialRoute: MainPgae.id,
-      routes: {
-        LoginScreen.id: (context) => LoginScreen(),
-        RegisterScreen.id: (context) => RegisterScreen(),
-        SendCode.id: (context) => SendCode(),
-      },
-      home: MainPgae(),
     );
   }
 }
