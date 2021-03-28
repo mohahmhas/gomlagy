@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gomalgy/widget/home_category_widgets/home_horizental_cats.dart';
 import 'package:gomalgy/widget/home_category_widgets/image_slider_first_item.dart';
-import 'package:gomalgy/widget/home_category_widgets/product_best_selling.dart';
+import 'package:gomalgy/providers/home_categories.dart' as homeCat;
+
+final catDataProvider = ChangeNotifierProvider<homeCat.CatData>((ref) {
+  return homeCat.CatData();
+});
 
 class Home extends StatelessWidget {
   @override
@@ -19,7 +24,26 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SliderWidget(),
-                  Container(height: 250, child: HomeHorizentalCat())
+                  Container(
+                    height: 270,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'Featured Products',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 18,
+                                  color: Theme.of(context).primaryColor),
+                            ),
+                          ],
+                        ),
+                        HomeHorizentalCat(
+                            catDataProvider, '/products/featured'),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

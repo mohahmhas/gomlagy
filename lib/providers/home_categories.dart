@@ -59,9 +59,9 @@ class ImagesSlider with ChangeNotifier {
   }
 }
 
-class FeaturedCatData with ChangeNotifier {
-  Future<List> fetchAndSetFeaturedData() async {
-    var url = baseurl.Urls.api + '/products/featured';
+class CatData with ChangeNotifier {
+  Future<List> fetchAndSetCatdData(String catUrl) async {
+    var url = baseurl.Urls.api + catUrl;
 
     try {
       final response = await http.get(url);
