@@ -53,7 +53,8 @@ class ProductItemVertical extends StatelessWidget {
                           //   textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
-                          )),
+                          ),
+                          overflow: TextOverflow.ellipsis),
                     )
                   ],
                 )),

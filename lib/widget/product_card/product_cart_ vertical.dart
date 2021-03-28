@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gomalgy/widget/rating.dart';
 import '../../helpers/base_url.dart' as baseurl;
 
-class ProductCardHorizental extends StatelessWidget {
+class ProductCardvertical extends StatelessWidget {
   final String name;
   final String thumbnailImage;
 
@@ -12,7 +12,7 @@ class ProductCardHorizental extends StatelessWidget {
   final double unitPrice2;
   final double unitPrice3;
 
-  const ProductCardHorizental(
+  const ProductCardvertical(
       {Key key,
       this.name,
       this.rating,
@@ -27,7 +27,7 @@ class ProductCardHorizental extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 3),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        //crossAxisAlignment: CrossAxisAlignment.center,
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Center(
@@ -49,14 +49,26 @@ class ProductCardHorizental extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Flexible(
-            flex: 2,
-            child: Text(name,
-                //   textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-                overflow: TextOverflow.ellipsis),
+          Container(
+            height: 80,
+            width: 300,
+            // padding: EdgeInsets.all(2),
+            child: SingleChildScrollView(
+              child: Flexible(
+                //flex: 2,
+
+                child: Text(name,
+                    //textScaleFactor: ,
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15,
+                      height: 2,
+                      color: Colors.black,
+                    ),
+                    overflow: TextOverflow.ellipsis),
+              ),
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
