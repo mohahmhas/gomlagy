@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:gomalgy/widget/product_card/product_item_vertical.dart';
 import '../../helpers/base_url.dart' as baseurl;
 
-class PestSilling extends StatefulWidget {
+class BestSelling extends StatefulWidget {
   @override
-  _PestSillingState createState() => _PestSillingState();
+  _BestSellingState createState() => _BestSellingState();
 }
 
-class _PestSillingState extends State<PestSilling> {
+class _BestSellingState extends State<BestSelling> {
   @override
   Widget build(BuildContext context) {
     List list = [
       {
         'name': 'mohamed',
-        'thumbnailImage': baseurl.Urls.public_api +
-            '/uploads/all/EUVhpp6F3hBgCpjCd6NoZGmtHv5lhEyPeNG6Jq9g.jpeg',
-        'rating': 1.4,
-        'unitPrice': 12,
-        'unitPrice2': 14,
-        'unitPrice3': 20
+        'thumbnailImage':
+            'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg',
+        'rating': double.parse('1'),
+        'unitPrice': double.parse('1'),
+        'unitPrice2': double.parse('1'),
+        'unitPrice3': double.parse('1'),
       }
     ];
     return Column(
@@ -36,12 +36,18 @@ class _PestSillingState extends State<PestSilling> {
         ),
         Container(
           margin: EdgeInsets.symmetric(vertical: 20.0),
-          color: Colors.red,
+          color: Colors.white,
           height: MediaQuery.of(context).size.height * 0.26,
           child: ListView.builder(
-            itemBuilder: (ctx, i) =>
-                ProductItemVertical(list[i]['name'], list[i]['thumbnailImage']),
-            itemCount: list.length,
+            itemBuilder: (ctx, i) => ProductItemVertical(
+              name: list[i]['name'],
+              image: list[i]['thumbnailImage'],
+              rating: list[i]['rating'],
+              unitPrice: list[i]['unitPrice'],
+              unitPrice2: list[i]['unitPrice2'],
+              unitPrice3: list[i]['unitPrice3'],
+            ),
+            itemCount: (list.length),
           ),
         ),
       ],
