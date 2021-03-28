@@ -58,3 +58,52 @@ class ImagesSlider with ChangeNotifier {
     }
   }
 }
+
+class FeaturedCatData with ChangeNotifier {
+  Future<List> fetchAndSetFeaturedData() async {
+    var url = baseurl.Urls.api + '/products/featured';
+
+    try {
+      final response = await http.get(url);
+      //  print(response.body);
+      final extractedData = json.decode(response.body) as Map<String, Object>;
+      print(extractedData);
+      print('ef---------------------------');
+
+      if (response.statusCode >= 400) {
+        throw HttpException('An error occurred');
+      }
+      if (extractedData == null) {
+        return [];
+      }
+      // extractedData.forEach((id, data) {
+      // final prodactData = jsonDecode(json.encode(data));
+      // print('productsData');
+      // print(prodactData);
+      var productsData = (extractedData['data'] as List).map((data) {
+        final extractedData = data as Map<String, dynamic>;
+
+        return FeaturedProducts(
+            name: extractedData['name'],
+            basePrice: double.parse(extractedData['base_price'].toString()),
+            unitPrice: double.parse(extractedData['unit_price'].toString()),
+            unitPrice2: double.parse(extractedData['unit_price2'].toString()),
+            unitPrice3: double.parse(extractedData['unit_price3'].toString()),
+            rating: double.parse(extractedData['rating'].toString()),
+            thumbnailImage: extractedData['thumbnail_image']);
+      }).toList();
+      print(productsData[0].name);
+      print('ef---------------------------');
+
+      //  _items = productsData;
+      // });
+      return productsData;
+      // notifyListeners();
+    } catch (e) {
+      print(e);
+      throw HttpException('An error occurred');
+
+      // throw e;
+    }
+  }
+}

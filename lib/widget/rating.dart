@@ -3,18 +3,21 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Rating extends StatelessWidget {
   final double itemSize;
-
-  const Rating({Key key, this.itemSize}) : super(key: key);
+  final double initialRating;
+  const Rating({Key key, this.itemSize, this.initialRating}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
       //height: 10,
       //width: 2,
       child: RatingBar.builder(
-        initialRating: 3,
+        initialRating: initialRating,
         minRating: 0,
         direction: Axis.horizontal,
-        allowHalfRating: true,
+        allowHalfRating: false,
+        ignoreGestures: true,
+        updateOnDrag: false,
+        tapOnlyMode: true,
         itemCount: 5,
         itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
         itemBuilder: (context, _) => Icon(

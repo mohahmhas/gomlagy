@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomalgy/widget/home_category_widgets/home_horizental_cats.dart';
 import 'package:gomalgy/widget/home_category_widgets/image_slider_first_item.dart';
 import 'package:gomalgy/widget/home_category_widgets/product_best_selling.dart';
 
@@ -18,8 +19,7 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SliderWidget(),
-                  Row(),
-                  PestSilling(),
+                  Container(child: HomeHorizentalCat())
                 ],
               ),
             ),
