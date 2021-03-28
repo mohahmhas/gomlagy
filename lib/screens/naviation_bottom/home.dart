@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SliderWidget(),
-                  Container(child: HomeHorizentalCat())
+                  Container(height: 250, child: HomeHorizentalCat())
                 ],
               ),
             ),

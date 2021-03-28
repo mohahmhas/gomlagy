@@ -15,33 +15,49 @@ class HomeHorizentalCat extends ConsumerWidget {
     final featuredData = watch(featuredCatData);
     //featuredData.fetchAndSetProducts();
 
-    return FutureBuilder(
-        future: featuredData.fetchAndSetFeaturedData(),
-        builder: (ctx, snaptshot) {
-          if (snaptshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          }
-          print(snaptshot.data);
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(
+              'Featured Products',
+              style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 18,
+                  color: Theme.of(context).primaryColor),
+            )
+          ],
+        ),
+        FutureBuilder(
+            future: featuredData.fetchAndSetFeaturedData(),
+            builder: (ctx, snaptshot) {
+              if (snaptshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              }
 
-          return GridView.builder(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(10),
-            itemCount: snaptshot.data.length,
-            itemBuilder: (ctx, i) => ProductCardHorizental(
-              name: snaptshot.data[i]['name'],
-              rating: snaptshot.data[i]['rating'],
-              thumbnailImage: snaptshot.data[i]['thumbnailImage'],
-              unitPrice: snaptshot.data[i]['unitPrice'],
-              unitPrice2: snaptshot.data[i]['unitPrice2'],
-              unitPrice3: snaptshot.data[i]['unitPrice3'],
-            ),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2 / 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10),
-          );
-        });
+              print(snaptshot.data);
+
+              return Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  //  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(10),
+
+                  itemCount: snaptshot.data.length,
+                  itemBuilder: (ctx, i) => ProductCardHorizental(
+                    name: snaptshot.data[i].name,
+                    rating: snaptshot.data[i].rating,
+                    thumbnailImage: snaptshot.data[i].thumbnailImage,
+                    unitPrice: snaptshot.data[i].unitPrice,
+                    unitPrice2: snaptshot.data[i].unitPrice2,
+                    unitPrice3: snaptshot.data[i].unitPrice3,
+                  ),
+                ),
+              );
+            }),
+      ],
+    );
 
     // imgList == null || imgList.length == 0
     //     ? CircularProgressIndicator()

@@ -92,7 +92,6 @@ class FeaturedCatData with ChangeNotifier {
             rating: double.parse(extractedData['rating'].toString()),
             thumbnailImage: extractedData['thumbnail_image']);
       }).toList();
-      print(productsData[0].name);
       print('ef---------------------------');
 
       //  _items = productsData;
