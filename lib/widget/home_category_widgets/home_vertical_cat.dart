@@ -22,16 +22,18 @@ class HomeVerticalCats extends ConsumerWidget {
             margin: EdgeInsets.symmetric(vertical: 20.0),
             color: Colors.white,
             height: MediaQuery.of(context).size.height * 0.26,
-            child: ListView.builder(
-              itemBuilder: (ctx, i) => ProductItemVertical(
-                name: snaptshot.data[i].name,
-                rating: snaptshot.data[i].rating,
-                image: snaptshot.data[i].thumbnailImage,
-                unitPrice: snaptshot.data[i].unitPrice,
-                unitPrice2: snaptshot.data[i].unitPrice2,
-                unitPrice3: snaptshot.data[i].unitPrice3,
+            child: Expanded(
+              child: ListView.builder(
+                itemBuilder: (ctx, i) => ProductItemVertical(
+                  name: snaptshot.data[i].name,
+                  rating: snaptshot.data[i].rating,
+                  image: snaptshot.data[i].thumbnailImage,
+                  unitPrice: snaptshot.data[i].unitPrice,
+                  unitPrice2: snaptshot.data[i].unitPrice2,
+                  unitPrice3: snaptshot.data[i].unitPrice3,
+                ),
+                itemCount: snaptshot.data.length,
               ),
-              itemCount: snaptshot.data.lengthj,
             ),
           );
         });

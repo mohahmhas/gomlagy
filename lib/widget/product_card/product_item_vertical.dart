@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../rating.dart';
+import '../../helpers/base_url.dart' as baseurl;
 
 class ProductItemVertical extends StatelessWidget {
   final String name;
@@ -24,8 +25,8 @@ class ProductItemVertical extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width,
+            //height: MediaQuery.of(context).size.height * 0.2,
+            //width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -40,7 +41,8 @@ class ProductItemVertical extends StatelessWidget {
                           width: 100,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                            image: NetworkImage(image),
+                            image: NetworkImage(
+                                baseurl.Urls.public_api + '/' + image),
                             fit: BoxFit.fill,
                             onError: (o, e) {
                               print(o);
