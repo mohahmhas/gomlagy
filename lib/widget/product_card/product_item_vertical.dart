@@ -50,22 +50,18 @@ class ProductItemVertical extends StatelessWidget {
                           )),
                         ),
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 50, left: 10, right: 68),
-                        child: Column(
-                          children: [
-                            Text(name,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w800)),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Rating(itemSize: 20, initialRating: rating),
-                          ],
-                        ),
+                      Column(
+                        children: [
+                          Text(name,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  // fontSize: 16,
+                                  fontWeight: FontWeight.w800)),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Rating(itemSize: 20, initialRating: rating),
+                        ],
                       ),
                     ],
                   ),
