@@ -3,7 +3,12 @@ import 'package:gomalgy/screens/outhantication/log_screen.dart';
 import 'package:gomalgy/screens/outhantication/regist.dart';
 
 class CustomDrawer extends StatelessWidget {
+  final String name;
+  final String image;
+
   const CustomDrawer({
+    this.image,
+    this.name,
     Key key,
   }) : super(key: key);
 
@@ -63,36 +68,8 @@ class CustomDrawer extends StatelessWidget {
               height: 10,
             ),
             ListTile(
-              leading: Icon(Icons.charging_station_rounded),
-              title: Text('charging'),
-            ),
-            ListTile(
-              leading: Icon(Icons.charging_station_rounded),
-              title: Text('charging'),
-            ),
-            ListTile(
-              leading: Icon(Icons.charging_station_rounded),
-              title: Text('charging'),
-            ),
-            ListTile(
-              leading: Icon(Icons.charging_station_rounded),
-              title: Text('charging'),
-            ),
-            ListTile(
-              leading: Icon(Icons.charging_station_rounded),
-              title: Text('charging'),
-            ),
-            ListTile(
-              leading: Icon(Icons.charging_station_rounded),
-              title: Text('charging'),
-            ),
-            ListTile(
-              leading: Icon(Icons.charging_station_rounded),
-              title: Text('charging'),
-            ),
-            ListTile(
-              leading: Icon(Icons.charging_station_rounded),
-              title: Text('charging'),
+              leading: Image.network('assets/icons8_male_user_100_black.png'),
+              title: Text('name'),
             ),
           ],
         ),

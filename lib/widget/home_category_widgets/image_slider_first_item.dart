@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/providers/home_categories.dart' as homeCat;
+
 import 'package:carousel_slider/carousel_slider.dart';
 
 class SliderWidget extends ConsumerWidget {

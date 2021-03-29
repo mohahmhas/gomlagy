@@ -4,7 +4,7 @@ import 'package:gomalgy/mainPage.dart';
 import 'package:gomalgy/screens/outhantication/log_screen.dart';
 import 'package:gomalgy/screens/outhantication/regist.dart';
 import 'package:gomalgy/screens/outhantication/send_code.dart';
-import 'package:gomalgy/widget/product_card/product_cart_%20horizontal.dart';
+import 'package:splash_screen_view/SplashScreenView.dart';
 
 //wellcom
 void main() {
@@ -26,7 +26,18 @@ class MyApp extends StatelessWidget {
           RegisterScreen.id: (context) => RegisterScreen(),
           SendCode.id: (context) => SendCode(),
         },
-        home: MainPgae(),
+        home: SplashScreenView(
+          home: MainPgae(),
+          duration: 3000,
+          imageSize: 100,
+          imageSrc: "assets/logo_o_foreground.png",
+          // text: "Normal Text",
+          textType: TextType.NormalText,
+          textStyle: TextStyle(
+            fontSize: 30.0,
+          ),
+          backgroundColor: Colors.orange[900],
+        ),
       ),
     );
   }
