@@ -3,20 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gomalgy/providers/home_categories.dart' as homeCat;
 import 'package:carousel_slider/carousel_slider.dart';
 
-final imageSlider = ChangeNotifierProvider<homeCat.ImagesSlider>((ref) {
-  return homeCat.ImagesSlider();
-});
-
 class SliderWidget extends ConsumerWidget {
+  final sliderDataProvider;
+  final String url;
+
+  SliderWidget({this.sliderDataProvider, this.url});
+
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     // Listens to the value exposed by counterProvider
-
-    final sliderData = watch(imageSlider);
-    //sliderData.fetchAndSetProducts();
+    final sliderData = watch(sliderDataProvider);
 
     return FutureBuilder(
-        future: sliderData.fetchAndSetSliderData(),
+        future: sliderData.fetchAndSetSliderData(sliderUrl: url),
         builder: (ctx, snaptshot) {
           if (snaptshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gomalgy/widget/rating.dart';
 import '../../helpers/base_url.dart' as baseurl;
+import 'package:gomalgy/screens/details_prodect/details_page.dart';
 
 class ProductCardHorizental extends StatelessWidget {
   final String name;
@@ -24,92 +25,99 @@ class ProductCardHorizental extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 3),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Center(
-            child: Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: NetworkImage(
-                  baseurl.Urls.public_api + '/' + thumbnailImage,
-                ),
-                fit: BoxFit.cover,
-                onError: (o, e) {
-                  print(o);
-                },
-              )),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Flexible(
-            flex: 2,
-            child: Text(name,
-                //   textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-                overflow: TextOverflow.ellipsis),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Rating(
-                itemSize: 11,
-                initialRating: rating,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Details_page(),
+        ));
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 3),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Center(
+              child: Container(
+                height: 100,
+                width: 100,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: NetworkImage(
+                    baseurl.Urls.public_api + '/' + thumbnailImage,
+                  ),
+                  fit: BoxFit.cover,
+                  onError: (o, e) {
+                    print(o);
+                  },
+                )),
               ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            width: 150,
-            color: Colors.grey.withOpacity(0.2),
-            child: Column(
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Flexible(
+              flex: 2,
+              child: Text(name,
+                  //   textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                  overflow: TextOverflow.ellipsis),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      unitPrice.toString() + 'ج.م',
-                      style: TextStyle(color: Theme.of(context).primaryColor),
-                    ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        child: Container(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Text(
-                        unitPrice2.toString() + 'ج.م',
-                        textAlign: TextAlign.left,
-                      ),
-                    )),
-                    Expanded(
-                        child: Container(
-                      padding: EdgeInsets.only(right: 10),
-                      child: Text(
-                        unitPrice2.toString() + 'ج.م',
-                        textAlign: TextAlign.right,
-                      ),
-                    )),
-                  ],
+                Rating(
+                  itemSize: 11,
+                  initialRating: rating,
                 ),
               ],
             ),
-          )
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: 150,
+              color: Colors.grey.withOpacity(0.2),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        unitPrice.toString() + 'ج.م',
+                        style: TextStyle(color: Theme.of(context).primaryColor),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                          child: Container(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          unitPrice2.toString() + 'ج.م',
+                          textAlign: TextAlign.left,
+                        ),
+                      )),
+                      Expanded(
+                          child: Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Text(
+                          unitPrice2.toString() + 'ج.م',
+                          textAlign: TextAlign.right,
+                        ),
+                      )),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

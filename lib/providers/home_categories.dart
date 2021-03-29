@@ -16,9 +16,9 @@ class ImagesSlider with ChangeNotifier {
     return [..._items];
   }
 
-  Future<List> fetchAndSetSliderData() async {
-    var url = baseurl.Urls.api + '/offers';
-
+  Future<List> fetchAndSetSliderData({String sliderUrl}) async {
+    var url = baseurl.Urls.api + sliderUrl;
+//'/offers'
     try {
       final response = await http.get(url);
       //  print(response.body);

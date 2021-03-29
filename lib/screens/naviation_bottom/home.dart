@@ -10,6 +10,10 @@ final catDataProvider = ChangeNotifierProvider<homeCat.CatData>((ref) {
   return homeCat.CatData();
 });
 
+final imageSlider = ChangeNotifierProvider<homeCat.ImagesSlider>((ref) {
+  return homeCat.ImagesSlider();
+});
+
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,10 @@ class Home extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SliderWidget(),
+                  SliderWidget(
+                    sliderDataProvider: imageSlider,
+                    url: '/offers',
+                  ),
                   Container(
                     height: 270,
                     child: Column(
