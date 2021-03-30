@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomalgy/screens/details_prodect/details_page.dart';
 import 'package:gomalgy/widget/navigationBar.dart';
 import './widget/drawer.dart';
 

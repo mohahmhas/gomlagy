@@ -6,16 +6,22 @@ import 'package:carousel_slider/carousel_slider.dart';
 class SliderWidget extends ConsumerWidget {
   final sliderDataProvider;
   final String url;
-
-  SliderWidget({this.sliderDataProvider, this.url});
+  final List<String> imageList;
+  SliderWidget({this.sliderDataProvider, this.url, this.imageList});
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     // Listens to the value exposed by counterProvider
     final sliderData = watch(sliderDataProvider);
+    Future Check() async {
+      if (url != null) {
+        return await sliderData.fetchAndSetSliderData(sliderUrl: url);
+      }
+      return imageList;
+    }
 
     return FutureBuilder(
-        future: sliderData.fetchAndSetSliderData(sliderUrl: url),
+        future: Check(),
         builder: (ctx, snaptshot) {
           if (snaptshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();

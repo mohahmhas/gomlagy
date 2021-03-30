@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/product.dart';
+import 'package:gomalgy/models/product.dart';
 
 class Products with ChangeNotifier {
-  List<Product> _items = [];
+  List<ProductDetails> _items = [];
 }
