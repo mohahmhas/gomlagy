@@ -86,7 +86,7 @@ class _SliderWidgetViewState extends State<SliderWidgetView> {
         : Column(children: <Widget>[
             CarouselSlider(
               options: CarouselOptions(
-                height: MediaQuery.of(context).size.height * 0.20,
+                //   height: MediaQuery.of(context).size.height * 0.20,
                 autoPlay: true,
                 enlargeCenterPage: false,
               ),

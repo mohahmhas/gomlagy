@@ -34,6 +34,7 @@ class ProductCardHorizental extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 3),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

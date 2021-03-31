@@ -5,7 +5,8 @@ import 'package:gomalgy/widget/product_card/product_cart_%20vertical.dart';
 class HomeHorizentalGridCat extends ConsumerWidget {
   final catData;
   final String url;
-  HomeHorizentalGridCat(this.catData, this.url);
+  final int countOfItems;
+  HomeHorizentalGridCat(this.catData, this.url, this.countOfItems);
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     // Listens to the value exposed by counterProvider
@@ -21,31 +22,30 @@ class HomeHorizentalGridCat extends ConsumerWidget {
           }
 
           print(snaptshot.data);
+          List<Widget> list = [];
+          list = List.from(snaptshot.data.take(countOfItems).map((e) {
+            return ProductCardvertical(
+              name: e.name,
+              rating: e.rating,
+              thumbnailImage: e.thumbnailImage,
+              unitPrice: e.unitPrice,
+              unitPrice2: e.unitPrice2,
+              unitPrice3: e.unitPrice3,
+            );
+          }));
 
-          return Expanded(
-            child: GridView.builder(
-              scrollDirection: Axis.vertical,
-              //  scrollDirection: Axis.horizontal,
-              //shrinkWrap: true,
+          return Wrap(
+            direction: Axis.horizontal,
+            crossAxisAlignment: WrapCrossAlignment.start,
+            alignment: WrapAlignment.start,
+            //textDirection: TextDirection.rtl,
+            runAlignment: WrapAlignment.start,
+            runSpacing: 1.0,
+            spacing: 1.0,
 
-              //padding: const EdgeInsets.all(10),
-
-              itemCount: snaptshot.data.length,
-              itemBuilder: (ctx, i) => ProductCardvertical(
-                name: snaptshot.data[i].name,
-                rating: snaptshot.data[i].rating,
-                thumbnailImage: snaptshot.data[i].thumbnailImage,
-                unitPrice: snaptshot.data[i].unitPrice,
-                unitPrice2: snaptshot.data[i].unitPrice2,
-                unitPrice3: snaptshot.data[i].unitPrice3,
-              ),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 2 / 2,
-                  crossAxisSpacing: 10,
-                  mainAxisExtent: 280,
-                  mainAxisSpacing: 10),
-            ),
+            // verticalDirection: VerticalDirection.up,
+            //verticalDirection: tr,
+            children: list,
           );
         });
 

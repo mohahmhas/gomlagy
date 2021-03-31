@@ -56,7 +56,7 @@ class ProductCardvertical extends StatelessWidget {
             child: SingleChildScrollView(
               child: Flexible(
                 //flex: 2,
-
+                fit: FlexFit.loose,
                 child: Text(name,
                     //textScaleFactor: ,
                     softWrap: true,
