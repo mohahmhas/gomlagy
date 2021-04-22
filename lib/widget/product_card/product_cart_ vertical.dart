@@ -28,15 +28,12 @@ class ProductCardvertical extends StatelessWidget {
       height: MediaQuery.of(context).size.height * .35,
       width: MediaQuery.of(context).size.width / 2.4,
       child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
-           // fit: FlexFit.loose,
             flex: 2,
             child: Container(
-              height: 100,
-              width: 100,
+              height: MediaQuery.of(context).size.height * .15,
+              width: MediaQuery.of(context).size.width * .30,
               decoration: BoxDecoration(
                   image: DecorationImage(
                 image: NetworkImage(
@@ -53,9 +50,8 @@ class ProductCardvertical extends StatelessWidget {
             height: 3,
           ),
           Container(
-            height: 80,
-            //  width: 300,
-            // padding: EdgeInsets.all(2),
+            height: MediaQuery.of(context).size.height * .05,
+           // color: Colors.red[100],
             child: Text(name,
                 //textScaleFactor: ,
                 softWrap: true,

@@ -110,7 +110,7 @@ class Home extends StatelessWidget {
                             child: Text(
                               AppLocalizations.of(context)
                                   .translate('todays_deal'),
-                              textAlign: TextAlign.left,
+                             // textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.orange[900],
@@ -146,7 +146,7 @@ class Home extends StatelessWidget {
                                   fontSize: 20,
                                   color: Colors.orange[900],
                                   fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.left,
+                             // textAlign: TextAlign.left,
                             ),
                           ),
                           HomeHorizentalGridCat(
