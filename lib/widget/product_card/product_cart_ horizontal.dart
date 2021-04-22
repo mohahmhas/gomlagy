@@ -32,35 +32,41 @@ class ProductCardHorizental extends StatelessWidget {
         ));
       },
       child: Container(
+        // color: Colors.red[100],
+        width: MediaQuery.of(context).size.width * .40,
+
         margin: EdgeInsets.symmetric(horizontal: 3),
         child: Directionality(
           textDirection: TextDirection.ltr,
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Center(
-                child: Container(
-                  height: MediaQuery.of(context).size.height * .094,
-                  width: MediaQuery.of(context).size.width * .30,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                    image: NetworkImage(
-                      baseurl.Urls.public_api + '/' + thumbnailImage,
-                    ),
-                    fit: BoxFit.fitHeight,
-                    onError: (o, e) {
-                      print(o);
-                    },
-                  )),
+              Flexible(
+                flex: 3,
+                child: Center(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * .094,
+                    width: MediaQuery.of(context).size.width * .30,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: NetworkImage(
+                        baseurl.Urls.public_api + '/' + thumbnailImage,
+                      ),
+                      fit: BoxFit.fitHeight,
+                      onError: (o, e) {
+                        print(o);
+                      },
+                    )),
+                  ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.height * .009,
+              // ),
               Flexible(
-                flex: 2,
+                flex: 1,
                 child: Text(
                   name,
                   //   textAlign: TextAlign.center,
@@ -70,55 +76,62 @@ class ProductCardHorizental extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Rating(
-                    itemSize: 11,
-                    initialRating: rating,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: 150,
-                color: Colors.grey.withOpacity(0.2),
-                child: Column(
+              Flexible(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          unitPrice.toString() + 'ج.م',
-                          style: TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                            child: Container(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Text(
-                            unitPrice2.toString() + 'ج.م',
-                            textAlign: TextAlign.left,
-                          ),
-                        )),
-                        Expanded(
-                            child: Container(
-                          padding: EdgeInsets.only(right: 10),
-                          child: Text(
-                            unitPrice2.toString() + 'ج.م',
-                            textAlign: TextAlign.right,
-                          ),
-                        )),
-                      ],
+                    Rating(
+                      itemSize: 11,
+                      initialRating: rating,
                     ),
                   ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .009,
+              ),
+              Flexible(
+                flex: 3,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * .40,
+                  //height: MediaQuery.of(context).size.height * .079,
+                  color: Colors.grey.withOpacity(0.2),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            unitPrice.toString() + 'ج.م',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              child: Container(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              unitPrice2.toString() + 'ج.م',
+                              textAlign: TextAlign.left,
+                            ),
+                          )),
+                          Expanded(
+                              child: Container(
+                            padding: EdgeInsets.only(right: 10),
+                            child: Text(
+                              unitPrice2.toString() + 'ج.م',
+                              textAlign: TextAlign.right,
+                            ),
+                          )),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],

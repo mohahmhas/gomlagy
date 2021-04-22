@@ -38,7 +38,8 @@ class Home extends StatelessWidget {
                     flex: 1,
                     fit: FlexFit.loose,
                     child: Container(
-                      height: MediaQuery.of(context).size.height / 3.5,
+                      height: MediaQuery.of(context).size.height * .28,
+                      // color: Colors.grey[600],
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
