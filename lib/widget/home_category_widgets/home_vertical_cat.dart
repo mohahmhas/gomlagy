@@ -6,17 +6,27 @@ class HomeVerticalCats extends ConsumerWidget {
   final catData;
   final String url;
   final int countOfItems;
-  HomeVerticalCats({this.catData, this.url, this.countOfItems});
+  final String arrayKey;
+
+  HomeVerticalCats(
+      {this.catData, this.url, this.countOfItems, this.arrayKey = ''});
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final providerCatData = watch(catData);
+    Future Check() async {
+      if (url != null) {
+        return arrayKey == ''
+            ? await providerCatData.fetchAndSetCatdData(url)
+            : providerCatData.items[arrayKey];
+      }
+    }
 
     return FutureBuilder(
-        future: providerCatData.fetchAndSetCatdData(url),
+        future: Check(),
         builder: (ctx, snaptshot) {
           if (snaptshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
           print(snaptshot.data);
           List<Widget> list = [];
@@ -33,13 +43,12 @@ class HomeVerticalCats extends ConsumerWidget {
 
           return Container(
             margin: EdgeInsets.symmetric(vertical: 20.0),
-            color: Colors.white,
+            // color: Colors.white,
             //   height: MediaQuery.of(context).size.height * 0.26,
-            child: Expanded(
-                child: Wrap(
+            child: Wrap(
               //verticalDirection: tr,
               children: list,
-            )),
+            ),
           );
         });
   }

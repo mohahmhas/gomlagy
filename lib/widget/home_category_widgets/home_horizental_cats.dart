@@ -5,19 +5,28 @@ import 'package:gomalgy/widget/product_card/product_cart_%20horizontal.dart';
 class HomeHorizentalCat extends ConsumerWidget {
   final catData;
   final String url;
-  HomeHorizentalCat(this.catData, this.url);
+  final String arrayKey;
+
+  HomeHorizentalCat(this.catData, this.url, {this.arrayKey = ''});
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     // Listens to the value exposed by counterProvider
 
     final featuredData = watch(catData);
     //featuredData.fetchAndSetProducts();
+    Future Check() async {
+      if (url != null) {
+        return arrayKey == ''
+            ? await featuredData.fetchAndSetCatdData(url)
+            : featuredData.items[arrayKey];
+      }
+    }
 
     return FutureBuilder(
-        future: featuredData.fetchAndSetCatdData(url),
+        future: Check(),
         builder: (ctx, snaptshot) {
           if (snaptshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
 
           print(snaptshot.data);

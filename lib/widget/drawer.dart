@@ -3,10 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gomalgy/screens/outhantication/log_screen.dart';
 import 'package:gomalgy/screens/outhantication/regist.dart';
 import 'package:gomalgy/providers/drawer_provider.dart';
-
-final drawerProvider = ChangeNotifierProvider<DrawerData>((ref) {
-  return DrawerData();
-});
+import '../providers/auth.dart';
 
 class CustomDrawer extends ConsumerWidget {
   @override
@@ -17,7 +14,14 @@ class CustomDrawer extends ConsumerWidget {
     //final int categoryid;
     //final Map<String, String> links;
     //final String image;
-
+    List<Widget> list = [];
+    list = List.from(context.read(drawerProvider).drawerData.map((e) {
+      return drawerItem(
+        id: e.id,
+        image: e.image,
+        name: e.name,
+      );
+    }));
     return Container(
       color: Colors.white,
       width: 250,
@@ -47,22 +51,29 @@ class CustomDrawer extends ConsumerWidget {
                     padding: const EdgeInsets.only(
                       top: 10,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, LoginScreen.id);
-                          },
-                          child: Text('SIGN IN '),
-                        ),
-                        GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, RegisterScreen.id);
-                            },
-                            child: Text('/REGISTER'))
-                      ],
-                    ),
+                    child: Consumer(builder: (context, watch, child) {
+                      final auth = watch(authDataProvider);
+                      return auth.isAuth
+                          ? Text(auth.username)
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, LoginScreen.id);
+                                  },
+                                  child: Text('SIGN IN '),
+                                ),
+                                GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, RegisterScreen.id);
+                                    },
+                                    child: Text('/REGISTER'))
+                              ],
+                            );
+                    }),
                   ),
                 ],
               ),
@@ -71,26 +82,18 @@ class CustomDrawer extends ConsumerWidget {
             SizedBox(
               height: 10,
             ),
-            FutureBuilder(
-                future: drawerData.fetchAndSetCatdData(),
-                builder: (ctx, snaptshot) {
-                  if (snaptshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<Widget> list = [];
-                  list = List.from(snaptshot.data.map((e) {
-                    return drawerItem(
-                      id: e.id,
-                      image: e.image,
-                      name: e.name,
-                    );
-                  }));
+            // FutureBuilder(
+            //     future: drawerData.fetchAndSetCatdData(),
+            //     builder: (ctx, snaptshot) {
+            //       if (snaptshot.connectionState == ConnectionState.waiting) {
+            //         return Center(child: CircularProgressIndicator());
+            //       }
 
-                  return Wrap(
-                    //verticalDirection: tr,
-                    children: list,
-                  );
-                })
+            Wrap(
+              //verticalDirection: tr,
+              children: list,
+            )
+            //   })
           ],
         ),
       ),

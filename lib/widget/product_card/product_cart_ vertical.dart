@@ -24,13 +24,16 @@ class ProductCardvertical extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 3),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .35,
+      width: MediaQuery.of(context).size.width / 2.4,
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.center,
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Center(
+          Flexible(
+           // fit: FlexFit.loose,
+            flex: 2,
             child: Container(
               height: 100,
               width: 100,
@@ -47,28 +50,22 @@ class ProductCardvertical extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 3,
           ),
           Container(
             height: 80,
-            width: 300,
+            //  width: 300,
             // padding: EdgeInsets.all(2),
-            child: SingleChildScrollView(
-              child: Flexible(
-                //flex: 2,
-                fit: FlexFit.loose,
-                child: Text(name,
-                    //textScaleFactor: ,
-                    softWrap: true,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 15,
-                      height: 2,
-                      color: Colors.black,
-                    ),
-                    overflow: TextOverflow.ellipsis),
-              ),
-            ),
+            child: Text(name,
+                //textScaleFactor: ,
+                softWrap: true,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                  height: 2,
+                  color: Colors.black,
+                ),
+                overflow: TextOverflow.ellipsis),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -80,10 +77,10 @@ class ProductCardvertical extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 10,
+            height: 3,
           ),
           Container(
-            width: 150,
+            // width: 150,
             color: Colors.grey.withOpacity(0.2),
             child: Column(
               children: [

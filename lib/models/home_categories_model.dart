@@ -32,7 +32,7 @@ class FeaturedProducts {
   final double rating;
   final double sales;
   final double shippingCost;
-  final Map<String, String> links;
+  final Map<String, dynamic> links;
 
   FeaturedProducts(
       {@required this.name,

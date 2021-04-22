@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gomalgy/providers/search_provider.dart';
 
 class TextFields extends StatelessWidget {
   final String hint;
   final IconData icon;
   final Function onClick;
+  final Function onTap;
+
   // ignore: missing_return
   String _errorMassage(String str) {
     switch (hint) {
@@ -18,10 +22,14 @@ class TextFields extends StatelessWidget {
     }
   }
 
-  TextFields({this.onClick, @required this.hint, this.icon});
+  TextFields({this.onClick, @required this.hint, this.icon, this.onTap});
+  //final _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
+    // _focusNode.addListener(() {
+    //   onTap();
+    // });
     return Column(
       children: [
         Padding(
@@ -30,42 +38,51 @@ class TextFields extends StatelessWidget {
             padding:
                 const EdgeInsets.only(top: 32.0, bottom: 0, right: 8, left: 8),
             child: Container(
-              height: 40,
-              child: TextFormField(
-                // ignore: missing_return
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return _errorMassage(hint);
-                  }
-                },
-                onSaved: onClick,
-                obscureText: hint == 'Enter your Password' ? true : false,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    icon,
-                    color: Colors.black,
-                  ), //icon
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: hint,
+                height: 40,
+                child: Consumer(builder: (ctx, watch, child) {
+                  return TextFormField(
+                    onChanged: (val) {
+                      print(val);
+                      context
+                          .read(provider)
+                          .fetchAndSetdData(val, fromSearch: true);
+                    },
+                    // focusNode: _focusNode,
+                    onTap: onTap,
+                    // ignore: missing_return
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return _errorMassage(hint);
+                      }
+                    },
+                    onSaved: onClick,
+                    obscureText: hint == 'Enter your Password' ? true : false,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        icon,
+                        color: Colors.black,
+                      ), //icon
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: hint,
 
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueGrey),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueGrey),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  border: InputBorder.none,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                      ),
+                      border: InputBorder.none,
 
-                  labelStyle: TextStyle(
-                    color: Colors.white70,
-                  ),
-                ),
-              ),
-            ),
+                      labelStyle: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+                  );
+                })),
           ),
         ),
       ],

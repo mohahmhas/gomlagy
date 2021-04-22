@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../rating.dart';
 import '../../helpers/base_url.dart' as baseurl;
 
+/////// not using this class 
+
 class ProductItemVertical extends StatelessWidget {
   final String name;
   final String image;
@@ -78,12 +80,12 @@ class ProductItemVertical extends StatelessWidget {
                           fontWeight: FontWeight.w800)),
                   Text(unitPrice2.toString(),
                       style: TextStyle(
-                          color: Theme.of(context).primaryColor,
+                          color: Colors.grey[400],
                           fontSize: 16,
                           fontWeight: FontWeight.w800)),
                   Text(unitPrice3.toString(),
                       style: TextStyle(
-                          color: Theme.of(context).primaryColor,
+                          color: Colors.grey[400],
                           fontSize: 16,
                           fontWeight: FontWeight.w800)),
                 ],

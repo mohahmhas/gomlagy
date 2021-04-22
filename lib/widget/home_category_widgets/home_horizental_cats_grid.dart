@@ -6,19 +6,29 @@ class HomeHorizentalGridCat extends ConsumerWidget {
   final catData;
   final String url;
   final int countOfItems;
-  HomeHorizentalGridCat(this.catData, this.url, this.countOfItems);
+  final String arrayKey;
+
+  HomeHorizentalGridCat(this.catData, this.url, this.countOfItems,
+      {this.arrayKey = ''});
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     // Listens to the value exposed by counterProvider
 
     final featuredData = watch(catData);
     //featuredData.fetchAndSetProducts();
+    Future Check() async {
+      if (url != null) {
+        return arrayKey == ''
+            ? await featuredData.fetchAndSetCatdData(url)
+            : featuredData.items[arrayKey];
+      }
+    }
 
     return FutureBuilder(
-        future: featuredData.fetchAndSetCatdData(url),
+        future: Check(),
         builder: (ctx, snaptshot) {
           if (snaptshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
 
           print(snaptshot.data);
@@ -37,14 +47,15 @@ class HomeHorizentalGridCat extends ConsumerWidget {
           return Wrap(
             direction: Axis.horizontal,
             crossAxisAlignment: WrapCrossAlignment.start,
+
             alignment: WrapAlignment.start,
+
             //textDirection: TextDirection.rtl,
             runAlignment: WrapAlignment.start,
-            runSpacing: 1.0,
-            spacing: 1.0,
+            runSpacing: 3.0,
+            spacing: 5.0,
 
             // verticalDirection: VerticalDirection.up,
-            //verticalDirection: tr,
             children: list,
           );
         });

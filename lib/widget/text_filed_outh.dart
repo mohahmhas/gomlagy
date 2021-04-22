@@ -4,6 +4,8 @@ class TextFieldsOuth extends StatelessWidget {
   final String hint;
   final IconData icon;
   final Function onClick;
+  final Function valed;
+  final Function change;
   // ignore: missing_return
   String _errorMassage(String str) {
     switch (hint) {
@@ -18,51 +20,56 @@ class TextFieldsOuth extends StatelessWidget {
     }
   }
 
-  TextFieldsOuth({this.onClick, @required this.hint, @required this.icon});
+  TextFieldsOuth(
+      {this.onClick,
+      @required this.hint,
+      @required this.icon,
+      this.valed,
+      this.change});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(top: 15.0, bottom: 0, right: 8, left: 8),
-            child: Container(
-              height: 60,
-              child: TextFormField(
-                // ignore: missing_return
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return _errorMassage(hint);
-                  }
-                },
-                onSaved: onClick,
-                obscureText: hint == 'Enter your Password' ? true : false,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    icon,
-                    color: Colors.black,
-                  ), //icon
-                  filled: true,
-                  fillColor: Colors.grey,
-                  hintText: hint,
+          padding:
+              const EdgeInsets.only(top: 15.0, bottom: 0, right: 8, left: 8),
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: TextFormField(
+              onChanged: change,
+              // ignore: missing_return
+              validator: valed,
+              // (value) {
+              //   if (value.isEmpty) {
+              //     return _errorMassage(hint);
+              //   }
+              // },
+              onSaved: onClick,
 
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey[600]),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey[600]),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey[600]),
-                  ),
-                  border: InputBorder.none,
+              obscureText: icon == Icons.lock ? true : false,
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  icon,
+                  color: Colors.black,
+                ), //icon
+                filled: true,
+                fillColor: Colors.grey,
+                hintText: hint,
 
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                  ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey[600]),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey[600]),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey[600]),
+                ),
+                border: InputBorder.none,
+
+                labelStyle: TextStyle(
+                  color: Colors.black,
                 ),
               ),
             ),

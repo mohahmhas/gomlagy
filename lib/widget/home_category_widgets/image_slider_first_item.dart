@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import '../../helpers/base_url.dart' as baseurl;
 
 class SliderWidget extends ConsumerWidget {
   final sliderDataProvider;
   final String url;
-  final List<String> imageList;
-  SliderWidget({this.sliderDataProvider, this.url, this.imageList});
+  final List imageList;
+  final String arrayKey;
+  SliderWidget(
+      {this.sliderDataProvider, this.url, this.imageList, this.arrayKey = ''});
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -15,7 +18,9 @@ class SliderWidget extends ConsumerWidget {
     final sliderData = watch(sliderDataProvider);
     Future Check() async {
       if (url != null) {
-        return await sliderData.fetchAndSetSliderData(sliderUrl: url);
+        return arrayKey == ''
+            ? await sliderData.fetchAndSetSliderData(sliderUrl: url)
+            : sliderData.items[arrayKey];
       }
       return imageList;
     }
@@ -28,12 +33,15 @@ class SliderWidget extends ConsumerWidget {
           }
           List<String> imgList = [];
           imgList = List.from(snaptshot.data.map((e) {
-            print(e.offerimagepath);
+            //  print(e.offerimagepath);
+            if (url == null) {
+              return baseurl.Urls.public_api + '/' + e;
+            }
             return e.offerimagepath;
           }));
 
-          print(imgList.length);
-          print('imgList.length');
+          // print(imgList.length);
+          // print('imgList.length');
 
           return SliderWidgetView(imgList: imgList);
         });
@@ -79,8 +87,8 @@ class _SliderWidgetViewState extends State<SliderWidgetView> {
   Widget build(BuildContext context) {
     int _current = 0;
 
-    print(widget.imgList.length);
-    print('widget.imgList');
+    // print(widget.imgList.length);
+    // print('widget.imgList');
     return widget.imgList == null || widget.imgList.length == 0
         ? CircularProgressIndicator()
         : Column(children: <Widget>[
@@ -91,8 +99,8 @@ class _SliderWidgetViewState extends State<SliderWidgetView> {
                 enlargeCenterPage: false,
               ),
               items: map<Widget>(widget.imgList, (index, i) {
-                print('object');
-                print(i);
+                // print('object');
+                // print(i);
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
