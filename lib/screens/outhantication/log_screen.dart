@@ -8,8 +8,6 @@ import 'package:gomalgy/screens/outhantication/send_code.dart';
 import 'package:gomalgy/widget/text_filed_outh.dart';
 import 'package:gomalgy/providers/auth.dart';
 
-import '../../mainPage.dart';
-
 class LoginScreen extends StatefulWidget {
   static String id = 'LoginScreen';
   @override
