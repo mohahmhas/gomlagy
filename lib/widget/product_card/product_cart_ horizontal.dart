@@ -9,12 +9,13 @@ class ProductCardHorizental extends StatelessWidget {
 
   final double unitPrice;
   final double rating;
-
+  final String id;
   final double unitPrice2;
   final double unitPrice3;
 
   const ProductCardHorizental(
       {Key key,
+      this.id,
       this.name,
       this.rating,
       this.thumbnailImage,
@@ -27,9 +28,10 @@ class ProductCardHorizental extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        print('----------id---' + id);
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Details_page(),
-        ));
+            builder: (context) => initDetailsPage(),
+            settings: RouteSettings(arguments: id)));
       },
       child: Container(
         // color: Colors.red[100],

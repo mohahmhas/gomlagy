@@ -109,8 +109,12 @@ class CatData with ChangeNotifier {
       // print(prodactData);
       var productsData = (extractedData['data'] as List).map((data) {
         final extractedData = data as Map<String, dynamic>;
+        var linksData = extractedData['links']['details'];
+        String id = linksData.substring(
+            linksData.lastIndexOf("/") + 1, linksData.length);
 
         return FeaturedProducts(
+            id: id,
             name: extractedData['name'],
             basePrice: double.parse(extractedData['base_price'].toString()),
             unitPrice: double.parse(extractedData['unit_price'].toString()),

@@ -17,6 +17,8 @@ class ImageSlider {
 }
 
 class FeaturedProducts {
+  final String id;
+
   final String name;
   final List<String> photos;
   final String thumbnailImage;
@@ -35,7 +37,8 @@ class FeaturedProducts {
   final Map<String, dynamic> links;
 
   FeaturedProducts(
-      {@required this.name,
+      {this.id,
+      @required this.name,
       this.photos,
       this.thumbnailImage,
       @required this.basePrice,

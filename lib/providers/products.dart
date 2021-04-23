@@ -8,6 +8,7 @@ import '../helpers/http_exception.dart';
 
 class Products with ChangeNotifier {
   Future<ProductDetails> fetchAndSetProductData({String product_id}) async {
+    print('-------------id details provider ' + product_id);
     var url = baseurl.Urls.api + '/products/' + product_id;
     try {
       final response = await http.get(Uri.parse(url));

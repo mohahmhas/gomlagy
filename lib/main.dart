@@ -6,6 +6,7 @@ import 'package:gomalgy/providers/drawer_provider.dart';
 import 'package:gomalgy/providers/localization/app_localizations.dart';
 import 'package:gomalgy/screens/account_information/account_information_page.dart';
 import 'package:gomalgy/screens/my_wishlist_screen.dart';
+import 'package:gomalgy/screens/outhantication/forget_password.dart';
 
 import 'package:gomalgy/screens/outhantication/log_screen.dart';
 import 'package:gomalgy/screens/outhantication/regist.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
             LoginScreen.id: (context) => LoginScreen(),
             RegisterScreen.id: (context) => RegisterScreen(),
             SendCode.id: (context) => SendCode(),
+            ForgetPassword.id: (context) => ForgetPassword(),
             CheckOut.id: (context) => CheckOut(),
             CardPayment.id: (context) => CardPayment(),
             MainPgae.id: (context) => MainPgae(),

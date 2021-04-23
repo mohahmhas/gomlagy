@@ -40,6 +40,7 @@ class HomeHorizentalCat extends ConsumerWidget {
 
               itemCount: snaptshot.data.length,
               itemBuilder: (ctx, i) => ProductCardHorizental(
+                id: snaptshot.data[i].id.toString(),
                 name: snaptshot.data[i].name,
                 rating: snaptshot.data[i].rating,
                 thumbnailImage: snaptshot.data[i].thumbnailImage,

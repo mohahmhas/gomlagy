@@ -32,13 +32,17 @@ class initDetailsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    String ProductId = ModalRoute.of(context).settings.arguments;
+    print('-------------id details');
+
+    String productId = ModalRoute.of(context).settings.arguments;
+    print('-------------id details' + productId);
+
     // Listens to the value exposed by counterProvider
     final productdata = watch(productDataProvider);
     productdetailslist = [];
 
     return FutureBuilder(
-      future: productdata.fetchAndSetProductData(product_id: ProductId),
+      future: productdata.fetchAndSetProductData(product_id: productId),
       builder: (ctx, snaptshot) {
         if (snaptshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -1057,11 +1061,15 @@ class _Favorite_listState extends State<Favorite_list> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read(favDataProvider).checkproductfavorite(ProductId: '141');
+    String productId = ModalRoute.of(context).settings.arguments;
+
+    context.read(favDataProvider).checkproductfavorite(ProductId: productId);
   }
 
   @override
   Widget build(BuildContext context) {
+    String productId = ModalRoute.of(context).settings.arguments;
+
     return Consumer(
       builder: (context, watch, child) {
         final fav_statues = watch(favDataProvider);
@@ -1074,7 +1082,7 @@ class _Favorite_listState extends State<Favorite_list> {
             ),
             onPressed: () {
               print(widget.productDetails.id.toString());
-              fav_statues.changeStateIcon(ProductId: '141');
+              fav_statues.changeStateIcon(ProductId: productId);
             });
       },
     );
