@@ -14,7 +14,7 @@ class ForgetPassword extends StatefulWidget {
 
 class _SendState extends State<ForgetPassword> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
-  String _code;
+  String _email;
   @override
   void initState() {
     // TODO: implement initState
@@ -56,7 +56,7 @@ class _SendState extends State<ForgetPassword> {
                     padding:
                         const EdgeInsets.only(top: 50, left: 10, bottom: 10),
                     child: Text(
-                      AppLocalizations.of(context).translate('send_code'),
+                      AppLocalizations.of(context).translate('email'),
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ),
@@ -94,19 +94,19 @@ class _SendState extends State<ForgetPassword> {
                             TextFieldsOuth(
                               onClick: (value) {
                                 setState(() {
-                                  _code = value;
+                                  _email = value;
                                 });
                               },
                               valed: (value) {
                                 if (value.isEmpty == true) {
                                   return AppLocalizations.of(context)
-                                      .translate('send_code');
+                                      .translate('email_is_required');
                                 }
                                 return null;
                               },
                               icon: Icons.email_outlined,
                               hint: AppLocalizations.of(context)
-                                  .translate('send_code'),
+                                  .translate('email'),
                             ),
                             SizedBox(
                               height: height * 0.04,
@@ -159,10 +159,10 @@ class _SendState extends State<ForgetPassword> {
     print('3');
 
     try {
-      context.read(authDataProvider).sendCode(_code).then((value) {
+      context.read(authDataProvider).forgetPassword(_email).then((value) {
         if (!value) {
           Fluttertoast.showToast(
-              msg: "Wrong email",
+              msg: "We can not find a user with that e-mail address",
               gravity: ToastGravity.TOP,
               fontSize: MediaQuery.of(context).textScaleFactor * 12);
         } else {

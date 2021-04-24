@@ -40,31 +40,374 @@ class initDetailsPage extends ConsumerWidget {
     // Listens to the value exposed by counterProvider
     final productdata = watch(productDataProvider);
     productdetailslist = [];
+    // print('+++++++++++++++++++++++++++id---' + productId);
+    return Card(
+      color: Colors.white,
+      child: FutureBuilder(
+        future: productdata.fetchAndSetProductData(product_id: productId),
+        builder: (ctx, snaptshot) {
+          if (snaptshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-    return FutureBuilder(
-      future: productdata.fetchAndSetProductData(product_id: productId),
-      builder: (ctx, snaptshot) {
-        if (snaptshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
-        }
+          if (snaptshot.data == null) {
+            return Center(
+              child: Text(
+                AppLocalizations.of(context).translate('nodata'),
+                style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: MediaQuery.of(context).textScaleFactor * 20),
+              ),
+            );
+          }
 
-        if (snaptshot.data == null) {
-          return Center(
-            child: Text(
-              AppLocalizations.of(context).translate('nodata'),
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24),
-            ),
+          return Details_page(
+            productDetails: snaptshot.data,
+            productProvider: productdata,
           );
-        }
-
-        return Details_page(
-          productDetails: snaptshot.data,
-          productProvider: productdata,
-        );
-      },
+        },
+      ),
     );
   }
 }
+
+/*
+class Details_page extends StatelessWidget {
+  final ProductDetails productDetails;
+  final productProvider;
+  const Details_page({this.productDetails, this.productProvider});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          productDetails.name,
+        ),
+        leading: null,
+        backgroundColor: Theme.of(context).primaryColor,
+        centerTitle: true,
+      ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 1.1,
+              child: ListView(
+                children: [
+                  SliderWidget(
+                    sliderDataProvider: imageSlider,
+                    imageList: productDetails.photos.cast<String>().toList(),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+// Main Product name
+                      Text(
+                        productDetails.name,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+//Favorite Button Class
+                      Favorite_list(
+                        productDetails: productDetails,
+                      ),
+/*   context.read(authDataProvider).isAuth
+                          ? Favorite_list(
+                              productDetails: widget.productDetails,
+                            )
+                          :   LoginScreen(),*/
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+//Star rate Marker
+                      Rating(
+                        itemSize: 16.0,
+                        initialRating: productDetails.rating.toDouble(),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text("\( ${productDetails.rating} \) ")
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+// Information about Quantity and Price
+                      ColumnPrice(
+                        price: productDetails.unitPrice,
+                        min: productDetails.minQuantity1,
+                        max: productDetails.maxQuantity1,
+                      ),
+                      ColumnPrice(
+                        price: productDetails.unitPrice2,
+                        min: productDetails.minQuantity2,
+                        max: productDetails.maxQuantity2,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+// Information about Quantity and Price
+                      ColumnPrice(
+                        price: productDetails.unitPrice3,
+                        min: productDetails.minQuantity3,
+                        max: productDetails.maxQuantity3,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  quantity_part_selector(),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Text(
+                    AppLocalizations.of(context)
+                        .translate('products_you_might_also_like'),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  HomeHorizentalGridCat(
+                      productDataProvider, productDetails.links['related'], 4),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    AppLocalizations.of(context)
+                        .translate('top_selling_products_from_this_seller'),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  FutureBuilder(
+                      future: productProvider.fetchTopFromSellingLink(
+                          related: productDetails.links['related']),
+                      builder: (ctx, snaptshot) {
+                        if (snaptshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        if (snaptshot.data == null) {
+                          return Container();
+                        }
+                        return HomeHorizentalGridCat(
+                          productDataProvider,
+                          snaptshot.data,
+                          4,
+                        );
+                      }),
+                  SizedBox(
+                    height: 50,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 12,
+              color: Theme.of(context).primaryColor,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  MaterialButton(
+                    onPressed: () {
+// print("length is : ${productdetailslist.length}");
+// for (int i = 0; i < productdetailslist.length; i++) {
+//   print(
+//       "******************************************************************");
+//   print(
+//       "The Product name :  ${productdetailslist[i].nameProduct}");
+//
+//   print(
+//       "The Product Model name :  ${productdetailslist[i].namemodel}");
+//   print(
+//       "The Product color :  ${productdetailslist[i].color}");
+//   print(
+//       "The Product Quantity :  ${productdetailslist[i].numofquantity}");
+//   print(
+//       "******************************************************************");
+// }
+//
+                      if (context.read(authDataProvider).isAuth) {
+                        AddtoCartList(context);
+                      } else {
+                        Navigator.pushNamed(context, LoginScreen.id);
+                      }
+                    },
+                    child: Text(
+                      AppLocalizations.of(context).translate('add_to_cart'),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: MediaQuery.of(context).textScaleFactor * 16,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  MaterialButton(
+                    onPressed: () {
+                      if (context.read(authDataProvider).isAuth) {
+                        AddtoCartList(context);
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ShopCartPage()));
+                      } else {
+                        Navigator.pushNamed(context, LoginScreen.id);
+                      }
+                    },
+                    child: Text(
+                      AppLocalizations.of(context).translate('buy_now'),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: MediaQuery.of(context).textScaleFactor * 16,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void AddtoCartList(BuildContext context) async {
+    print("productdetailslist.length");
+    print(productdetailslist.length);
+    print("productdetailslist.quan");
+    print(productdetailslist[0].numofquantity);
+    print("productdetailslist.id");
+    print(productdetailslist[0].productid);
+
+    if (productdetailslist.length > 1) {
+      for (int i = 0; i < productdetailslist.length; i++) {
+        if (productdetailslist[i].numofquantity > 0) {
+          if (productdetailslist[i].color != null) {
+          } else {
+            print("No Color choose");
+            return;
+          }
+        }
+      }
+    } else {
+      await SendDataToCartClass.SendDataToCart(
+        quantity: productdetailslist[0].numofquantity,
+        variation: null,
+        productId: productdetailslist[0].productid.toString(),
+      );
+
+      Fluttertoast.showToast(
+          msg: AppLocalizations.of(context).translate('add_to_cart'));
+    }
+
+    if (productdetailslist.length > 1) {
+// print("in if");
+      for (int i = 0; i < productdetailslist.length; i++) {
+        if (productdetailslist[i].numofquantity > 0) {
+// print(
+//     "${productdetailslist[i].color.toString()}\-${productdetailslist[i].namemodel}");
+          String hexColor = productdetailslist[i].color.toString();
+          hexColor = hexColor.substring(6, (hexColor.length - 1));
+// print("Color");
+// print(hexColor);
+// print("Color");
+          await SendDataToCartClass.SendDataToCart(
+            quantity: productdetailslist[i].numofquantity,
+            variation: "${hexColor}-${productdetailslist[i].namemodel}",
+            productId: productdetailslist[i].productid,
+          );
+          Fluttertoast.showToast(
+              msg: AppLocalizations.of(context).translate('add_to_cart') +
+                  "  ${productdetailslist[i].namemodel}");
+        }
+      }
+    }
+  }
+
+  Widget quantity_part_selector() {
+    if (productDetails.choiceOptions.length > 0) {
+      return quantity_partMultiRow(
+        productDetails: productDetails,
+      );
+    } else {
+      return quantity_partSingleRow(productDetails: productDetails);
+    }
+  }
+
+  Widget ColumnPrice({int price, int min, int max, BuildContext context}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Text(
+          "$price E.G",
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: 20,
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+        Text(
+          "$min - $max piece",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+          ),
+        ),
+      ],
+    );
+  }
+}
+*/
 
 class Details_page extends StatefulWidget {
   final ProductDetails productDetails;
@@ -94,7 +437,7 @@ class _Details_pageState extends State<Details_page> {
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height / 1.1,
               child: ListView(
                 children: [
                   SliderWidget(
@@ -117,11 +460,14 @@ class _Details_pageState extends State<Details_page> {
                         ),
                       ),
                       //Favorite Button Class
-                      context.read(authDataProvider).isAuth
+                      Favorite_list(
+                        productDetails: widget.productDetails,
+                      ),
+                      /*   context.read(authDataProvider).isAuth
                           ? Favorite_list(
                               productDetails: widget.productDetails,
                             )
-                          : LoginScreen(),
+                          :   LoginScreen(),*/
                     ],
                   ),
                   SizedBox(
@@ -222,8 +568,14 @@ class _Details_pageState extends State<Details_page> {
                             ConnectionState.waiting) {
                           return Center(child: CircularProgressIndicator());
                         }
+                        if (snaptshot.data == null) {
+                          return Container();
+                        }
                         return HomeHorizentalGridCat(
-                            productDataProvider, snaptshot.data, 4);
+                          productDataProvider,
+                          snaptshot.data,
+                          4,
+                        );
                       }),
                   SizedBox(
                     height: 50,
@@ -271,9 +623,10 @@ class _Details_pageState extends State<Details_page> {
                       AppLocalizations.of(context).translate('add_to_cart'),
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: MediaQuery.of(context).textScaleFactor * 18,
+                        fontWeight: FontWeight.w600,
+                        fontSize: MediaQuery.of(context).textScaleFactor * 16,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   SizedBox(
@@ -296,9 +649,10 @@ class _Details_pageState extends State<Details_page> {
                       AppLocalizations.of(context).translate('buy_now'),
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: MediaQuery.of(context).textScaleFactor * 18,
+                        fontWeight: FontWeight.w600,
+                        fontSize: MediaQuery.of(context).textScaleFactor * 16,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
@@ -311,91 +665,67 @@ class _Details_pageState extends State<Details_page> {
   }
 
   void AddtoCartList() async {
-    if (productdetailslist.length > 1) {
-      for (int i = 0; i < productdetailslist.length; i++) {
-        if (productdetailslist[i].numofquantity > 0) {
-          if (productdetailslist[i].color != null) {
-          } else {
-            print("No Color choosed");
-            return;
-          }
-        }
+    String hexColor;
+    // print("productdetailslist.length");
+    // print(productdetailslist.length);
+    // print("productdetailslist.quan");
+    // print(productdetailslist[0].numofquantity);
+    // print("productdetailslist.id");
+    // print(productdetailslist[0].productid);
+if(productdetailslist.length > 1) {
+  for (int i = 0; i < productdetailslist.length; i++) {
+    if (productdetailslist[i].numofquantity > 0) {
+      if (productdetailslist[i].color != null) {} else {
+        Fluttertoast.showToast(
+            msg:
+            "Please,Select Color to ${productdetailslist[i].namemodel} model");
+        // print("No Color choose");
+        return;
       }
-    } else {
-      SendDataToCartClass.SendDataToCart(
-        quantity: productdetailslist[0].numofquantity,
-        variation: null,
-      );
-      return;
     }
+  }
+}else{
+
+  if (productdetailslist[0].numofquantity == 0) {
+    Fluttertoast.showToast(
+        msg:
+        "Please,Select Quantity");
+return ;
+  }
+
+}
 
     for (int i = 0; i < productdetailslist.length; i++) {
       if (productdetailslist[i].numofquantity > 0) {
         // print(
         //     "${productdetailslist[i].color.toString()}\-${productdetailslist[i].namemodel}");
-
-        String hexColor = productdetailslist[i].color.toString();
-        hexColor = hexColor.substring(6, (hexColor.length - 1));
+        print("productdetailslist[i].color.toString()");
+        print(productdetailslist[i].color.toString());
+        if (productdetailslist[i].color == null) {
+          //print("IN if");
+          hexColor = null;
+        } else {
+          //   print("IN Else");
+          hexColor = productdetailslist[i].color.toString();
+          hexColor = hexColor.substring(6, (hexColor.length - 1));
+        }
         // print("Color");
         // print(hexColor);
         // print("Color");
-        widget.productDetails.id;
         await SendDataToCartClass.SendDataToCart(
           quantity: productdetailslist[i].numofquantity,
-          variation: "${hexColor}-${productdetailslist[i].namemodel}",
+          variation: hexColor != null
+              ? "${hexColor}-${productdetailslist[i].namemodel}"
+              : null,
+          productId: productdetailslist[i].productid,
         );
+        Fluttertoast.showToast(
+            msg: AppLocalizations.of(context).translate('add_to_cart') +
+                "  ${productdetailslist[i].namemodel}");
       }
     }
-
-    Fluttertoast.showToast(
-        msg: AppLocalizations.of(context).translate('add_to_cart'));
   }
 
-/*
-  Future<bool> SendDataToCart({
-    int quantity,
-    String user_id,
-    String variation,
-  }) async {
-    final url = baseurl.Urls.api + '/carts/add';
-    //print("Name is:  ${name}");
-    // print(url);
-    print("Var $variation");
-    try {
-      final response = await http.post(
-        Uri.parse(url),
-        headers: Map<String, String>.from({
-          'Content-Type': 'application/json',
-          'Authorization':
-              'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI3MDRlMWYwODIxMDk3ODIyYjMzMDM4NzM0MGE2MDJkNzgxM2RiYWJhMmViZmY1NGIyMDM5NmRlYzg2N2Y4ZTdkZTg0MDNjNzJjZTEyNGE1In0.eyJhdWQiOiIzIiwianRpIjoiMjcwNGUxZjA4MjEwOTc4MjJiMzMwMzg3MzQwYTYwMmQ3ODEzZGJhYmEyZWJmZjU0YjIwMzk2ZGVjODY3ZjhlN2RlODQwM2M3MmNlMTI0YTUiLCJpYXQiOjE2MTc4NzM4MDIsIm5iZiI6MTYxNzg3MzgwMiwiZXhwIjoxNjQ5NDA5ODAyLCJzdWIiOiIxMzciLCJzY29wZXMiOltdfQ.XH6HpOMbSPPogkHHMMYUItf_0T3NactuHLgGQCM7GVUModItAUvj1I8BPBFt3Q3wvNiRwp9xQBHL6TZL9Lq_BSeYTvXt8X2jYbBWHvfeYr3s1486b88f06WFYC7AGP3bXgsxs0zEEholZy20hNMeM4tP29ZR2nnpXIKkIV7JS1aUOqYqLoa3dLfBsQf3KSV9m30CNckLHVwItBZJXynNTcTURAWEDuBoLboqFj1qRcIJvVarSxPisPIKL1S9XkfRYENekMPt3d7uN9AJX7jrE-SoioQ3CPoqxo-ZA88J7MEL2OZjJjXqK6aOEFViN3mBfHSsF4K5gMgRP32q56w8AZ1_907iDGDyq36XeKt_EiAgePsFfLwVVkdn0ZYI8juOM95MadwZHx6EdXbQeX5cHhNerxS61ot-mCeGrIKCFJ-9aGuQz3WIU4FH5-hzqVIxE2BfPcQZ8pj3HyPlGj7zd0puN5ybXjYdI_A4gCQu9M7aTSsa3jWXllALIAQGnRSLggfSkL5CwkiIOWQRG2p_81Z-gA-USoLwG206sFNlo9uoIG31l3dWVXPAiwrIhjGCnyg-XFBFO8H_a8iqUgADQq4IjspcZzIlLKIKDdxKD0p3GDrg77UnudbcW8-2PBGSIxhvkF6gu0VC80pjR4kxXMjPwfAQcSBH01jrSe3F_eo',
-        }),
-        body: json.encode(
-          {
-            'user_id': user_id,
-            'id': widget.productDetails.id,
-            'quantity': quantity,
-            'variant': variation,
-          },
-        ),
-      );
-//      print("ResADDresssss : ${response.body} ");
-      final responseData = json.decode(response.body);
-      //    print("ResponseDataUpdate   $responseData ");
-      if (responseData['error'] != null) {
-        throw HttpException(responseData['error']['message']);
-      }
-      if (response.statusCode >= 400) {
-        throw HttpException('An Error occurred!');
-      }
-
-      print("Send Successfully to cart");
-      return true;
-    } catch (e) {
-      print("E  " + e);
-      throw e;
-    }
-  }
-*/
   Widget quantity_part_selector() {
     if (widget.productDetails.choiceOptions.length > 0) {
       return quantity_partMultiRow(
@@ -448,9 +778,6 @@ class _quantity_partMultiRowState extends State<quantity_partMultiRow> {
   List<TextEditingController> mycontroller = [];
   int choiceOptionsnumber;
   List choiceOptionsName = [];
-  bool flag = true;
-  int rowSelected = 0;
-  bool rowSelectedmark = false;
 
   @override
   void initState() {
@@ -468,9 +795,9 @@ class _quantity_partMultiRowState extends State<quantity_partMultiRow> {
       mycontroller.add(testcontroller);
 
       ProductDetailsList obj = new ProductDetailsList(
-          nameProduct: widget.productDetails.name,
-          productid: widget.productDetails.id.toString(),
-          userid: '137');
+        nameProduct: widget.productDetails.name,
+        productid: widget.productDetails.id.toString(),
+      );
       productdetailslist.add(obj);
     }
 
@@ -717,59 +1044,6 @@ class _quantity_partMultiRowState extends State<quantity_partMultiRow> {
     }
 
     return myDataRowBuilder;
-
-    /*  return DataRow(
-      cells: [
-        DataCell(
-          Color(),
-        ),
-        DataCell(
-          Text(modelname),
-        ),
-        DataCell(
-          Row(
-            children: [
-              IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () {
-                  mycontroller.text =
-                      (int.parse(mycontroller.text) + 1).toString();
-
-                  price = (int.parse(mycontroller.text.toString()) *
-                          widget.productDetails.unitPrice)
-                      .toString();
-                  print(price);
-                },
-              ),
-              Container(
-                height: 40,
-                width: 40,
-                child: TextField(
-                  controller: mycontroller,
-                  textAlign: TextAlign.center,
-                  keyboardType: TextInputType.number,
-                ),
-              ),
-              IconButton(
-                  icon: Icon(Icons.remove),
-                  onPressed: () {
-                    if (int.parse(mycontroller.text) > 0) {
-                      mycontroller.text =
-                          (int.parse(mycontroller.text) - 1).toString();
-                    }
-
-                    price = (int.parse(mycontroller.text.toString()) *
-                            widget.productDetails.unitPrice)
-                        .toString();
-                  }),
-            ],
-          ),
-        ),
-        DataCell(
-          Text(price),
-        ),
-      ],
-    );    */
   }
 
   Widget Color(int indexlist) {
@@ -925,6 +1199,7 @@ class _quantity_part_selectorState extends State<quantity_partSingleRow> {
     testcontroller.text = '0';
     obj.nameProduct = widget.productDetails.name;
     productdetailslist.add(obj);
+    productdetailslist[0].productid = widget.productDetails.id.toString();
   }
 
   @override
@@ -994,9 +1269,9 @@ class _quantity_part_selectorState extends State<quantity_partSingleRow> {
                 width: 40,
                 child: TextField(
                   onChanged: (value) {
-                    setState(() {
-                      NewValueOfPrice();
-                    });
+                    //TODO
+                    // was setstate here
+                    NewValueOfPrice();
                   },
                   controller: testcontroller,
                   textAlign: TextAlign.center,
@@ -1012,7 +1287,7 @@ class _quantity_part_selectorState extends State<quantity_partSingleRow> {
                             (int.parse(testcontroller.text) - 1).toString();
                       }
                       NewValueOfPrice();
-                      print(price);
+                      //       print(price);
                       /*   price = (int.parse(testcontroller.text.toString()) *
                               widget.productDetails.unitPrice)
                           .toString();
@@ -1061,14 +1336,15 @@ class _Favorite_listState extends State<Favorite_list> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    String productId = ModalRoute.of(context).settings.arguments;
-
-    context.read(favDataProvider).checkproductfavorite(ProductId: productId);
+    //  String productId = ModalRoute.of(context).settings.arguments;
+    context
+        .read(favDataProvider)
+        .checkproductfavorite(ProductId: widget.productDetails.id.toString());
   }
 
   @override
   Widget build(BuildContext context) {
-    String productId = ModalRoute.of(context).settings.arguments;
+    //  String productId = ModalRoute.of(context).settings.arguments;
 
     return Consumer(
       builder: (context, watch, child) {
@@ -1081,8 +1357,14 @@ class _Favorite_listState extends State<Favorite_list> {
               size: 30,
             ),
             onPressed: () {
-              print(widget.productDetails.id.toString());
-              fav_statues.changeStateIcon(ProductId: productId);
+              // print(widget.productDetails.id.toString());
+              // print(context.read(authDataProvider).isAuth);
+              if (context.read(authDataProvider).isAuth) {
+                fav_statues.changeStateIcon(
+                    ProductId: widget.productDetails.id.toString());
+              } else {
+                Navigator.pushNamed(context, LoginScreen.id);
+              }
             });
       },
     );
@@ -1144,7 +1426,3 @@ class _DropDownState extends State<DropDown> {
     }
   }
 }
-
-// class Calculate {
-//   static void Calculatefun() {}
-// }

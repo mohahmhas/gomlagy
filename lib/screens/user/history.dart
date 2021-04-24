@@ -5,9 +5,23 @@ import 'package:gomalgy/screens/user/history_temp.dart';
 import 'package:gomalgy/widget/navigationBar.dart';
 import 'package:gomalgy/widget/navigationBar.dart';
 
-class HistoryPage extends StatelessWidget {
+class HistoryPage extends StatefulWidget {
   static String id = 'HistoryPage';
 
+  @override
+  _HistoryPageState createState() => _HistoryPageState();
+}
+
+class _HistoryPageState extends State<HistoryPage> {
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Navigat()));
+
+  }
   @override
   Widget build(BuildContext context) {
     PurchasesHistory apiHistory = PurchasesHistory();

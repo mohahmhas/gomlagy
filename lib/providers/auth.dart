@@ -146,6 +146,42 @@ class Auth extends ChangeNotifier {
     }
   }
 
+  Future<bool> forgetPassword(String email) async {
+    final url = baseurl.Urls.api + '/auth/send_code_forget_password';
+
+    try {
+      final response = await http.post(Uri.parse(url),
+          headers: Map<String, String>.from({
+            'Content-Type': 'application/json',
+            'Charset': 'utf-8',
+          }),
+          body: json.encode({
+            'email': email,
+          }));
+      print(response.body.toString());
+      final responseData = json.decode(response.body);
+      if (responseData['error'] != null) {
+        throw HttpException(responseData['error']['message']);
+      }
+      if (response.statusCode >= 400) {
+        print(response.body);
+
+        throw HttpException('An Error occurred!');
+      }
+      // {"message":"Please verify your account","is_verified":0}
+      if (responseData['success'] == true) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
+
+      //throw e;
+    }
+  }
+
   Future<bool> _authenticateRegister(
       String email, String password, String name) async {
     final url = baseurl.Urls.api + '/auth/signup';

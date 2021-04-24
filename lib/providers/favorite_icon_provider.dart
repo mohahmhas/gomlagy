@@ -25,6 +25,10 @@ class FavoriteIconProvider extends ChangeNotifier {
   bool get iconstatues => _iconstatues;
 
   Future changeStateIcon({String ProductId}) async {
+    // print("_iconstatues");
+    // print(_iconstatues);
+    // print("_iconstatues");
+
     if (_iconstatues) {
       final url = baseurl.Urls.api + '/wishlists/' + _wishlistid.toString();
       try {
@@ -71,7 +75,7 @@ class FavoriteIconProvider extends ChangeNotifier {
               'product_id': ProductId,
             }));
 
-        print("Resresssss : ${response.body.toString()} ");
+        //   print("Resresssss : ${response.body.toString()} ");
         final responseData = json.decode(response.body);
         //  print("dataADDREEESSS   $responseData ");
         if (responseData['error'] != null) {

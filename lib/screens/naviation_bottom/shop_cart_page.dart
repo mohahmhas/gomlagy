@@ -16,9 +16,16 @@ class ShopCartPage extends StatefulWidget {
 
 class _ShopCartPageState extends State<ShopCartPage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read(CartItemDataProvider).getShopCartItems();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final heightsize = MediaQuery.of(context).size.height;
-    //  print("height  $heightsize");
+    print("height  $heightsize");
     if (!context.read(authDataProvider).isAuth) {
       return Center(
         child: Text(
@@ -30,20 +37,44 @@ class _ShopCartPageState extends State<ShopCartPage> {
         ),
       );
     } else {
-      return Column(
-        children: [
-          SizedBox(
-            height: heightsize <= 600
-                ? MediaQuery.of(context).size.height / 2.3
-                : MediaQuery.of(context).size.height / 1.6,
-            width: MediaQuery.of(context).size.width,
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(8),
-              child: CartItemsBuilder(),
-            ),
-          ),
-          TotalContainerBuilder(),
-        ],
+      return Consumer(
+        builder: (context, watch, child) {
+          final TotalDataProvider = watch(CartItemDataProvider);
+
+          if (TotalDataProvider.TotalPrice != 0.0) {
+            return SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: (heightsize <= 800)
+                        ? (heightsize <= 600)
+                            ? MediaQuery.of(context).size.height / 2.3
+                            : MediaQuery.of(context).size.height / 1.9
+                        : MediaQuery.of(context).size.height / 1.6,
+                    width: MediaQuery.of(context).size.width,
+                    child: SingleChildScrollView(
+                      padding: EdgeInsets.all(8),
+                      child: CartItemsBuilder(),
+                    ),
+                  ),
+                  TotalContainerBuilder(),
+                ],
+              ),
+            );
+          } else {
+            return Center(
+              child: Container(
+                child: Text(
+                  "Your Cart is Empty",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: MediaQuery.of(context).textScaleFactor * 20),
+                ),
+              ),
+            );
+          }
+        },
       );
     }
   }
@@ -68,7 +99,7 @@ class _TotalContainerBuilderState extends State<TotalContainerBuilder> {
               Text(
                 AppLocalizations.of(context).translate('total_amount'),
                 style: TextStyle(
-                  fontSize: MediaQuery.of(context).textScaleFactor * 18,
+                  fontSize: MediaQuery.of(context).textScaleFactor * 16,
                 ),
               ),
               Consumer(
@@ -107,7 +138,7 @@ class _TotalContainerBuilderState extends State<TotalContainerBuilder> {
                 child: Text(
                   AppLocalizations.of(context).translate('proceed_to_checkout'),
                   style: TextStyle(
-                    fontSize: MediaQuery.of(context).textScaleFactor * 18,
+                    fontSize: MediaQuery.of(context).textScaleFactor * 16,
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
