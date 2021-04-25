@@ -35,6 +35,7 @@ class HomeHorizentalGridCat extends ConsumerWidget {
           List<Widget> list = [];
           list = List.from(snaptshot.data.take(countOfItems).map((e) {
             return ProductCardvertical(
+              id: e.id,
               name: e.name,
               rating: e.rating,
               thumbnailImage: e.thumbnailImage,

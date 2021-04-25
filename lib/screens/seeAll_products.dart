@@ -47,6 +47,7 @@ class _SeeAllProductsState extends State<SeeAllProducts> {
                       return Container(
                         margin: EdgeInsets.only(left: 30, top: 20),
                         child: ProductCardvertical(
+                          id: e.id,
                           name: e.name,
                           thumbnailImage: e.thumbnailImage,
                           rating: double.parse(e.rating.toString()),

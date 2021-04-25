@@ -15,7 +15,8 @@ class SeeAllProductsModel {
         data.add(new SeeAllDataModel.fromJson(v));
       });
     }
-    links = json['links'] != null ? new OuterLinks.fromJson(json['links']) : null;
+    links =
+        json['links'] != null ? new OuterLinks.fromJson(json['links']) : null;
     meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
     success = json['success'];
     status = json['status'];
@@ -39,6 +40,7 @@ class SeeAllProductsModel {
 }
 
 class SeeAllDataModel {
+  String id;
   String name;
   List<String> photos;
   String thumbnailImage;
@@ -57,7 +59,8 @@ class SeeAllDataModel {
   Links links;
 
   SeeAllDataModel(
-      {this.name,
+      {this.id,
+      this.name,
       this.photos,
       this.thumbnailImage,
       this.basePrice,
@@ -75,6 +78,8 @@ class SeeAllDataModel {
       this.links});
 
   SeeAllDataModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+
     name = json['name'];
     photos = json['photos'].cast<String>();
     thumbnailImage = json['thumbnail_image'];
@@ -95,6 +100,8 @@ class SeeAllDataModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+
     data['name'] = this.name;
     data['photos'] = this.photos;
     data['thumbnail_image'] = this.thumbnailImage;

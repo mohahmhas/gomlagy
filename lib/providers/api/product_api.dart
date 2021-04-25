@@ -87,9 +87,16 @@ class CategoriesApi extends ChangeNotifier {
         // parsing json into List of objects
         final parsed = json.decode(response.body).cast<String, dynamic>();
         print('parsed of data' + parsed['data'].toString());
-        return parsed['data']
-            .map<SeeAllDataModel>((item) => SeeAllDataModel.fromJson(item))
-            .toList();
+        return parsed['data'].map<SeeAllDataModel>((item) {
+          var dataItems = item;
+          var linksData = item['links']['details'];
+          String id = linksData.substring(
+              linksData.lastIndexOf("/") + 1, linksData.length);
+
+          dataItems['id'] = id;
+          print('------------w' + dataItems['id']);
+          return SeeAllDataModel.fromJson(dataItems);
+        }).toList();
       } // end if
     } catch (e) {
       print(e);

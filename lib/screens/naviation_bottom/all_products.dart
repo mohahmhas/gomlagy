@@ -4,6 +4,7 @@ import 'package:gomalgy/models/product_categories_model.dart';
 import 'package:gomalgy/models/subProduct_categories_model.dart';
 import 'package:gomalgy/providers/api/product_api.dart';
 import 'package:gomalgy/providers/localization/app_localizations.dart';
+import 'package:gomalgy/screens/details_prodect/details_page.dart';
 import 'package:gomalgy/screens/seeAll_products.dart';
 import 'package:gomalgy/widget/product_card/allProductItem.dart';
 
@@ -20,8 +21,9 @@ class _AllProductsState extends State<AllProducts> {
 
   @override
   Widget build(BuildContext context) {
-    var categoriesNames = context.read(categoriesApiProvider).categoriesNamesItems['categories'] ;
-    var subCategoriesData = context.read(categoriesApiProvider) ;
+    var categoriesNames =
+        context.read(categoriesApiProvider).categoriesNamesItems['categories'];
+    var subCategoriesData = context.read(categoriesApiProvider);
     return Container(
       color: Colors.grey[300],
       // height: 200,
@@ -29,7 +31,7 @@ class _AllProductsState extends State<AllProducts> {
       width: MediaQuery.of(context).size.width,
       child: Row(
         children: [
-          /////////////////////////// edit here 
+          /////////////////////////// edit here
           Container(
             margin: EdgeInsets.only(right: 5, left: 5),
             width: MediaQuery.of(context).size.width / 4,
@@ -37,55 +39,53 @@ class _AllProductsState extends State<AllProducts> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
-                        itemCount: categoriesNames.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            child: TextButton(
-                              child: Center(
-                                  child: Text(
-                                categoriesNames[index].name,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                              onPressed: () {
-                                if (categoriesNames[index].id == 9) {
-                                  setState(() {
-                                    category_id = 9;
-                                    appBarName = categoriesNames[index].name;
-                                    print(
-                                        'category_id ${categoriesNames[index].id}');
-                                  });
-                                } else if (categoriesNames[index].id == 6) {
-                                  setState(() {
-                                    category_id = 6;
-                                    appBarName = categoriesNames[index].name;
-                                    print(
-                                        'category_id = ${categoriesNames[index].id}');
-                                  });
-                                } else if (categoriesNames[index].id == 8) {
-                                  setState(() {
-                                    category_id = 8;
-                                    appBarName = categoriesNames[index].name;
-                                    print(
-                                        'category_id ${categoriesNames[index].id}');
-                                  });
-                                } else {
-                                  setState(() {
-                                    category_id = 5;
-                                    appBarName = categoriesNames[index].name;
-                                    print(
-                                        'category_id = ${categoriesNames[index].id}');
-                                  });
-                                }
+                  itemCount: categoriesNames.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      child: TextButton(
+                        child: Center(
+                            child: Text(
+                          categoriesNames[index].name,
+                          maxLines: 2,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
+                        )),
+                        onPressed: () {
+                          if (categoriesNames[index].id == 9) {
+                            setState(() {
+                              category_id = 9;
+                              appBarName = categoriesNames[index].name;
+                              print('category_id ${categoriesNames[index].id}');
+                            });
+                          } else if (categoriesNames[index].id == 6) {
+                            setState(() {
+                              category_id = 6;
+                              appBarName = categoriesNames[index].name;
+                              print(
+                                  'category_id = ${categoriesNames[index].id}');
+                            });
+                          } else if (categoriesNames[index].id == 8) {
+                            setState(() {
+                              category_id = 8;
+                              appBarName = categoriesNames[index].name;
+                              print('category_id ${categoriesNames[index].id}');
+                            });
+                          } else {
+                            setState(() {
+                              category_id = 5;
+                              appBarName = categoriesNames[index].name;
+                              print(
+                                  'category_id = ${categoriesNames[index].id}');
+                            });
+                          }
 
-                                //       print('AppBarName = $appBarName');
-                              },
-                            ),
-                          );
-                        }),
+                          //       print('AppBarName = $appBarName');
+                        },
+                      ),
+                    );
+                  }),
             ),
           ),
           // right outer container
@@ -130,9 +130,11 @@ class _AllProductsState extends State<AllProducts> {
                     // container for repeating each item
                     child: Container(
                       child: FutureBuilder<List<CategoriesData>>(
-                        future: context.read(categoriesApiProvider).getCategoriesNames(
-                            endPoint:
-                                '/sub-category-products?category_id=$category_id'),
+                        future: context
+                            .read(categoriesApiProvider)
+                            .getCategoriesNames(
+                                endPoint:
+                                    '/sub-category-products?category_id=$category_id'),
                         builder: (context, snapShot) {
                           if (snapShot.hasData) {
                             return ListView.builder(
@@ -199,8 +201,9 @@ class _AllProductsState extends State<AllProducts> {
                                           child: FutureBuilder<List<Products>>(
                                             future: subCategoriesData
                                                 .getSubCategoriesData(
-                                                  endPoint : '/sub-category-products?category_id=$category_id',
-                                                   index: index),
+                                                    endPoint:
+                                                        '/sub-category-products?category_id=$category_id',
+                                                    index: index),
                                             builder: (context, snapshot) {
                                               if (snapshot.hasData) {
                                                 print(
@@ -213,8 +216,15 @@ class _AllProductsState extends State<AllProducts> {
                                                     return GestureDetector(
                                                       onTap: () {
                                                         print('id ${e.id}');
-                                                        /* Navigator.of(context).push(
-                                                          MaterialPageRoute(builder: (context)=>Details_page())); */
+                                                        Navigator.of(context).push(
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        initDetailsPage(),
+                                                                settings: RouteSettings(
+                                                                    arguments: e
+                                                                        .id
+                                                                        .toString())));
                                                       },
                                                       child:
                                                           AllProductItemContainer(

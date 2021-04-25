@@ -32,6 +32,7 @@ class HomeVerticalCats extends ConsumerWidget {
           List<Widget> list = [];
           list = List.from(snaptshot.data.take(countOfItems).map((e) {
             return ProductItemVertical(
+              id: e.id,
               name: e.name,
               rating: e.rating,
               image: e.thumbnailImage,

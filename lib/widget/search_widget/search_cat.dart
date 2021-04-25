@@ -45,6 +45,7 @@ class _SearchCatsState extends State<SearchCats> {
               child: ListView.builder(
                 controller: _scrollController,
                 itemBuilder: (ctx, i) => ProductItemVertical(
+                  id: providerCatData.items[i].id,
                   name: providerCatData.items[i].name,
                   rating: providerCatData.items[i].rating,
                   image: providerCatData.items[i].thumbnailImage,
