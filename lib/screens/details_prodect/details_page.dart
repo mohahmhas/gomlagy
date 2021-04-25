@@ -60,7 +60,6 @@ class initDetailsPage extends ConsumerWidget {
               ),
             );
           }
-
           return Details_page(
             productDetails: snaptshot.data,
             productProvider: productdata,
@@ -635,12 +634,14 @@ class _Details_pageState extends State<Details_page> {
                   MaterialButton(
                     onPressed: () {
                       if (context.read(authDataProvider).isAuth) {
-                        AddtoCartList();
-
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ShopCartPage()));
+                        //start loading
+                        AddtoCartList().then((value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ShopCartPage()));
+                        });
+                        //TODO cancel loading
                       } else {
                         Navigator.pushNamed(context, LoginScreen.id);
                       }
@@ -664,7 +665,7 @@ class _Details_pageState extends State<Details_page> {
     );
   }
 
-  void AddtoCartList() async {
+  Future<void> AddtoCartList() async {
     String hexColor;
     // print("productdetailslist.length");
     // print(productdetailslist.length);
@@ -672,28 +673,25 @@ class _Details_pageState extends State<Details_page> {
     // print(productdetailslist[0].numofquantity);
     // print("productdetailslist.id");
     // print(productdetailslist[0].productid);
-if(productdetailslist.length > 1) {
-  for (int i = 0; i < productdetailslist.length; i++) {
-    if (productdetailslist[i].numofquantity > 0) {
-      if (productdetailslist[i].color != null) {} else {
-        Fluttertoast.showToast(
-            msg:
-            "Please,Select Color to ${productdetailslist[i].namemodel} model");
-        // print("No Color choose");
+    if (productdetailslist.length > 1) {
+      for (int i = 0; i < productdetailslist.length; i++) {
+        if (productdetailslist[i].numofquantity > 0) {
+          if (productdetailslist[i].color != null) {
+          } else {
+            Fluttertoast.showToast(
+                msg:
+                    "Please,Select Color to ${productdetailslist[i].namemodel} model");
+            // print("No Color choose");
+            return;
+          }
+        }
+      }
+    } else {
+      if (productdetailslist[0].numofquantity == 0) {
+        Fluttertoast.showToast(msg: "Please,Select Quantity");
         return;
       }
     }
-  }
-}else{
-
-  if (productdetailslist[0].numofquantity == 0) {
-    Fluttertoast.showToast(
-        msg:
-        "Please,Select Quantity");
-return ;
-  }
-
-}
 
     for (int i = 0; i < productdetailslist.length; i++) {
       if (productdetailslist[i].numofquantity > 0) {

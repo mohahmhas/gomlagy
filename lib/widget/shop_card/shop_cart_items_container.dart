@@ -128,13 +128,17 @@ class ShopCartItemsContainer extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Text("Shipping Cost -"),
                       Text(
-                        " $shippingcostج.م ",
+                        "$shippingcostج.م",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: MediaQuery.of(context).textScaleFactor * 16,
+                          fontSize: MediaQuery.of(context).textScaleFactor * 14,
                         ),
+                      ),
+                      Text(
+                        "Shipping Cost",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ],
                   ),

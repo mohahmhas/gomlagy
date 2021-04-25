@@ -186,7 +186,8 @@
      "model":"model",
 
      "not_authorized":"Not Authorized",
-     "no_data":"No Data",
+     "nodata":"No Data",
+
     "no":"No",
     "checkout":"Checkout",
 

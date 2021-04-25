@@ -62,9 +62,14 @@ class SearchProvider with ChangeNotifier {
       _lastPage = metaData['last_page'];
       var productsData = (extractedData['data'] as List).map((data) {
         final extractedData = data as Map<String, dynamic>;
+        print('---------search ' + extractedData.toString());
+
+        var linksData = extractedData['links']['details'];
+        String id = linksData.substring(
+            linksData.lastIndexOf("/") + 1, linksData.length);
 
         return ProductCardvertical(
-            id: extractedData['id'],
+            id: id,
             name: extractedData['name'],
             unitPrice: double.parse(extractedData['unit_price'].toString()),
             unitPrice2: double.parse(extractedData['unit_price2'].toString()),

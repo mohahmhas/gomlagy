@@ -34,7 +34,7 @@ class _SearchCatsState extends State<SearchCats> {
       }
 
       return Container(
-        margin: EdgeInsets.symmetric(vertical: 20.0),
+        // margin: EdgeInsets.symmetric(vertical: 20.0),
         color: Colors.white,
         height: MediaQuery.of(context).size.height,
         child: Column(

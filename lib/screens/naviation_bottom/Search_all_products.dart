@@ -10,9 +10,17 @@ class SearchAllProducts extends StatefulWidget {
 class _SearchAllProductsState extends State<SearchAllProducts> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      child: SearchCats(),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height * .75,
+          child: SearchCats(),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .01,
+        )
+      ],
     );
   }
 }
