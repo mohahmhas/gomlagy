@@ -1,32 +1,36 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/mainPage.dart';
-import 'package:gomalgy/providers/drawer_provider.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/screens/account_information/account_information_page.dart';
-import 'package:gomalgy/screens/my_wishlist_screen.dart';
-import 'package:gomalgy/screens/outhantication/forget_password.dart';
+import 'package:gomlgy/mainPage.dart';
+import 'package:gomlgy/providers/drawer_provider.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/screens/account_information/account_information_page.dart';
+import 'package:gomlgy/screens/my_wishlist_screen.dart';
+import 'package:gomlgy/screens/outhantication/forget_password.dart';
+import 'package:flutter/services.dart';
 
-import 'package:gomalgy/screens/outhantication/log_screen.dart';
-import 'package:gomalgy/screens/outhantication/regist.dart';
-import 'package:gomalgy/screens/outhantication/send_code.dart';
-import 'package:gomalgy/screens/payment/card_Payment.dart';
-import 'package:gomalgy/screens/payment/checkout.dart';
-import 'package:gomalgy/screens/user/history.dart';
-import 'package:gomalgy/screens/user/orderdetailshistory.dart';
-import 'package:gomalgy/screens/wallet/Wallet_page.dart';
+import 'package:gomlgy/screens/outhantication/log_screen.dart';
+import 'package:gomlgy/screens/outhantication/regist.dart';
+import 'package:gomlgy/screens/outhantication/send_code.dart';
+import 'package:gomlgy/screens/payment/card_Payment.dart';
+import 'package:gomlgy/screens/payment/checkout.dart';
+import 'package:gomlgy/screens/user/history.dart';
+import 'package:gomlgy/screens/user/orderdetailshistory.dart';
+import 'package:gomlgy/screens/wallet/Wallet_page.dart';
 import 'package:splashscreen/splashscreen.dart';
 import './providers/auth.dart';
 import './providers/localization/app_language.dart';
 import 'helpers/keys.dart';
 import 'providers/home_categories.dart' as homeDataProvider;
-import 'package:gomalgy/screens/details_prodect/details_page.dart';
-import 'package:gomalgy/providers/api/product_api.dart';
+import 'package:gomlgy/screens/details_prodect/details_page.dart';
+import 'package:gomlgy/providers/api/product_api.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 //wellcom
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   AppLanguage appLanguage = AppLanguage();
   await appLanguage.fetchLocale();
   runApp(MyApp(
@@ -42,6 +46,11 @@ class MyApp extends StatelessWidget {
   bool firstLoad = true;
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
     return ProviderScope(child: Consumer(
       builder: (ctx, watch, child) {
         /////////////////////////////////////////////////////////

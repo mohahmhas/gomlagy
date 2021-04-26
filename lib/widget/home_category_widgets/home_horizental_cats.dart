@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/widget/product_card/product_cart_%20horizontal.dart';
+import 'package:gomlgy/widget/product_card/product_cart_%20horizontal.dart';
 
 class HomeHorizentalCat extends ConsumerWidget {
   final catData;

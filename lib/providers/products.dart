@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/models/ProductDetails.dart';
-import 'package:gomalgy/models/home_categories_model.dart';
+import 'package:gomlgy/models/ProductDetails.dart';
+import 'package:gomlgy/models/home_categories_model.dart';
 import '../helpers/base_url.dart' as baseurl;
 import 'package:http/http.dart' as http;
 import 'dart:convert';

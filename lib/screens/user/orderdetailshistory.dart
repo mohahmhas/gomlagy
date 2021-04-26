@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/providers/history_provider.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/providers/history_provider.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
 
-import 'package:gomalgy/providers/orderDetailsProvider.dart';
-import 'package:gomalgy/screens/user/orderDetailsTemp.dart';
+import 'package:gomlgy/providers/orderDetailsProvider.dart';
+import 'package:gomlgy/screens/user/orderDetailsTemp.dart';
 
 class OrdarDetails extends StatelessWidget {
   static String id = 'OrdarDetails';

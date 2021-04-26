@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/providers/history_provider.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/screens/user/history_temp.dart';
-import 'package:gomalgy/widget/navigationBar.dart';
-import 'package:gomalgy/widget/navigationBar.dart';
+import 'package:gomlgy/providers/history_provider.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/screens/user/history_temp.dart';
+import 'package:gomlgy/widget/navigationBar.dart';
+import 'package:gomlgy/widget/navigationBar.dart';
 
 class HistoryPage extends StatefulWidget {
   static String id = 'HistoryPage';
@@ -13,15 +13,13 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
-
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Navigat()));
-
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Navigat()));
   }
+
   @override
   Widget build(BuildContext context) {
     PurchasesHistory apiHistory = PurchasesHistory();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/widget/product_card/product_item_vertical.dart';
+import 'package:gomlgy/widget/product_card/product_item_vertical.dart';
 
 class WishListVerticalCats extends ConsumerWidget {
   final catData;
@@ -29,13 +29,12 @@ class WishListVerticalCats extends ConsumerWidget {
               unitPrice: e.unitPrice,
               unitPrice2: e.unitPrice2,
               unitPrice3: e.unitPrice3,
-              
             );
           }));
 
           return Container(
             margin: EdgeInsets.symmetric(vertical: 20.0),
-           // color: Colors.white,
+            // color: Colors.white,
             //   height: MediaQuery.of(context).size.height * 0.26,
             child: Wrap(
               //verticalDirection: tr,

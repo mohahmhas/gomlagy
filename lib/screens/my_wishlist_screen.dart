@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/providers/home_categories.dart' as homeCat;
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/widget/home_category_widgets/home_vertical_cat.dart';
-import 'package:gomalgy/widget/wishList_vertical_cat.dart';
+import 'package:gomlgy/providers/home_categories.dart' as homeCat;
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/widget/home_category_widgets/home_vertical_cat.dart';
+import 'package:gomlgy/widget/wishList_vertical_cat.dart';
 
 final catDataProvider = ChangeNotifierProvider<homeCat.CatData>((ref) {
   return homeCat.CatData();

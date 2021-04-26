@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/screens/payment/checkout.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/screens/payment/checkout.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 class Fatwora extends StatelessWidget {
-  final String addressDetails , cityName , country ;
-  Fatwora({this.addressDetails , this.cityName , this.country});
+  final String addressDetails, cityName, country;
+  Fatwora({this.addressDetails, this.cityName, this.country});
   static String id = 'Fatwora';
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,8 @@ class Fatwora extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                      top:MediaQuery.of(context).size.height * .02 ,
-                      ),
+                      top: MediaQuery.of(context).size.height * .02,
+                    ),
                     child: Text(
                       AppLocalizations.of(context).translate('fatwora'),
                       style: TextStyle(
@@ -45,16 +46,17 @@ class Fatwora extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * .01
-                  ) ,
+                    horizontal: MediaQuery.of(context).size.width * .01),
                 child: Column(
                   children: [
                     Row(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * .03),
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * .03),
                           child: Text(
-                            AppLocalizations.of(context).translate('order_date'),
+                            AppLocalizations.of(context)
+                                .translate('order_date'),
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,
@@ -62,7 +64,8 @@ class Fatwora extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left:  MediaQuery.of(context).size.width * .03),
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * .03),
                           child: Text(
                             '31--03-2021',
                             style: TextStyle(
@@ -79,7 +82,8 @@ class Fatwora extends StatelessWidget {
                     Row(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left:  MediaQuery.of(context).size.width * .03),
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * .03),
                           child: Text(
                             AppLocalizations.of(context).translate('address'),
                             style: TextStyle(
@@ -89,7 +93,8 @@ class Fatwora extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding:  EdgeInsets.only(left:  MediaQuery.of(context).size.width * .03),
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * .03),
                           child: Text(
                             '$addressDetails , $cityName , $country',
                             style: TextStyle(
@@ -104,9 +109,11 @@ class Fatwora extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top:  MediaQuery.of(context).size.height * .03),
+                          padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * .03),
                           child: Text(
-                            AppLocalizations.of(context).translate('ordered_products'),
+                            AppLocalizations.of(context)
+                                .translate('ordered_products'),
                             style: TextStyle(
                                 fontSize: 25,
                                 color: Colors.orange[900],
@@ -116,14 +123,13 @@ class Fatwora extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding:  EdgeInsets.only(
-                        top:  MediaQuery.of(context).size.height* .01,
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * .01,
                       ),
                       child: Container(
-                        padding:  EdgeInsets.only(
-                          left:  MediaQuery.of(context).size.width * .006, 
-                          right:  MediaQuery.of(context).size.width * .006
-                          ),
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * .006,
+                            right: MediaQuery.of(context).size.width * .006),
                         color: Color(0xffC1C2AF),
                         height: height * 0.06,
                         width: width * 9,
@@ -145,7 +151,9 @@ class Fatwora extends StatelessWidget {
                                       Container(
                                         width: width * 0.4,
                                         color: Colors.white,
-                                        height:  MediaQuery.of(context).size.height * .03,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .03,
                                         child: Center(
                                           child: Text(
                                             'mobil Cover mobile',
@@ -170,7 +178,9 @@ class Fatwora extends StatelessWidget {
                                       Container(
                                         width: width * 0.1,
                                         color: Colors.white,
-                                        height:  MediaQuery.of(context).size.height * .03,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .03,
                                         child: Center(
                                           child: Text(
                                             '20',
@@ -195,7 +205,9 @@ class Fatwora extends StatelessWidget {
                                       Container(
                                         width: width * 0.3,
                                         color: Colors.white,
-                                        height:  MediaQuery.of(context).size.height * .03,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .03,
                                         child: Center(
                                           child: Text(
                                             '30',
@@ -220,7 +232,9 @@ class Fatwora extends StatelessWidget {
                                       Container(
                                         width: width * 0.2,
                                         color: Colors.white,
-                                        height:  MediaQuery.of(context).size.height * .03,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .03,
                                         child: Center(
                                           child: Text(
                                             '7',
@@ -259,7 +273,8 @@ class Fatwora extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            AppLocalizations.of(context).translate('shipping_cost'),
+                            AppLocalizations.of(context)
+                                .translate('shipping_cost'),
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -286,7 +301,8 @@ class Fatwora extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            AppLocalizations.of(context).translate('total_amount'),
+                            AppLocalizations.of(context)
+                                .translate('total_amount'),
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -320,11 +336,17 @@ class Fatwora extends StatelessWidget {
                     primary: Theme.of(context).primaryColor,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, CheckOut.id);
+                    // Navigator.pushNamed(context, CheckOut.id);
+                    Navigator.push(
+                        context,
+                        WaveTransition(
+                            child: CheckOut(),
+                            center: FractionalOffset(0.90, 0.90),
+                            duration: Duration(milliseconds: 3000) // optional
+                            ));
                   },
-                  child: Text(
-                    AppLocalizations.of(context).translate('proceed_to_checkout')
-                  )),
+                  child: Text(AppLocalizations.of(context)
+                      .translate('proceed_to_checkout'))),
             ),
           ),
         ]),

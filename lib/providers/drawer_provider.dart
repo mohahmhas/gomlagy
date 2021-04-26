@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/models/drawer_model.dart';
+import 'package:gomlgy/models/drawer_model.dart';
 import 'package:http/http.dart' as http;
 import '../helpers/http_exception.dart';
 import '../helpers/base_url.dart' as baseurl;

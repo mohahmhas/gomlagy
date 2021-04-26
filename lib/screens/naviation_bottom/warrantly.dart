@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/screens/warrantly_add_request.dart';
+import 'package:gomlgy/screens/warrantly_add_request.dart';
+
 class WarrantlyRequests extends StatelessWidget {
-  String appBarName ;
+  String appBarName;
   WarrantlyRequests(this.appBarName);
   @override
   Widget build(BuildContext context) {
@@ -10,18 +11,15 @@ class WarrantlyRequests extends StatelessWidget {
         title: Text(appBarName),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-
-      ),
+      body: SingleChildScrollView(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         child: Icon(Icons.add),
-        onPressed: () { 
+        onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => WarrantlyAddRequests(appBarName)
-                  ));
-         },
-        ),
+              builder: (context) => WarrantlyAddRequests(appBarName)));
+        },
+      ),
     );
   }
 }

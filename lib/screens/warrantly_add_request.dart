@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
 
 class WarrantlyAddRequests extends StatelessWidget {
   String appBarName;

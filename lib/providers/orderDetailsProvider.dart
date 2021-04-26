@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:gomalgy/models/history_model.dart';
+import 'package:gomlgy/models/history_model.dart';
 import 'package:http/http.dart' as http;
 import '../helpers/http_exception.dart';
 import '../helpers/base_url.dart' as baseurl;

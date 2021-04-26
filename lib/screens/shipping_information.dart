@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gomalgy/screens/payment/fatwora.dart';
+import 'package:gomlgy/screens/payment/fatwora.dart';
 import '../providers/account_information.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
 
 class ShippingInformation extends StatefulWidget {
 //  AccountInformation accountInformation ;

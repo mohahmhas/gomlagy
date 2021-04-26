@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/helpers/keys.dart';
+import 'package:gomlgy/helpers/keys.dart';
 import 'package:http/http.dart' as http;
 import '../helpers/http_exception.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -101,7 +101,7 @@ class FavoriteIconProvider extends ChangeNotifier {
           headers: Map<String, String>.from({
             'Content-Type': 'application/json ;charset=UTF-8',
             'Charset': 'utf-8',
-            'Authorization': 'Bearer'+
+            'Authorization': 'Bearer' +
                 Keys.navKey.currentContext.read(authDataProvider).token,
           }),
           body: json.encode({

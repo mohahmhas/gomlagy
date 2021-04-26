@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/helpers/base_url.dart';
-import 'package:gomalgy/models/product_categories_model.dart';
-import 'package:gomalgy/models/subProduct_categories_model.dart';
-import 'package:gomalgy/providers/api/product_api.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/screens/details_prodect/details_page.dart';
-import 'package:gomalgy/screens/seeAll_products.dart';
-import 'package:gomalgy/widget/product_card/allProductItem.dart';
+import 'package:gomlgy/helpers/base_url.dart';
+import 'package:gomlgy/models/product_categories_model.dart';
+import 'package:gomlgy/models/subProduct_categories_model.dart';
+import 'package:gomlgy/providers/api/product_api.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/screens/details_prodect/details_page.dart';
+import 'package:gomlgy/screens/seeAll_products.dart';
+import 'package:gomlgy/widget/product_card/allProductItem.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

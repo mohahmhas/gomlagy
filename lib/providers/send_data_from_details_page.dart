@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:gomalgy/helpers/base_url.dart' as baseurl;
-import 'package:gomalgy/helpers/keys.dart';
+import 'package:gomlgy/helpers/base_url.dart' as baseurl;
+import 'package:gomlgy/helpers/keys.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:gomalgy/helpers/http_exception.dart';
+import 'package:gomlgy/helpers/http_exception.dart';
 import 'auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,12 +16,13 @@ class SendDataToCartClass {
   }) async {
     final url = baseurl.Urls.api + '/carts/add';
     //print("Name is:  ${name}");
-    print(url);
-    print("Var $variation");
-    print("Var $productId");
-    print("Var $quantity");
-    print("Var ${Keys.navKey.currentContext.read(authDataProvider).token}");
-    print("Var ${Keys.navKey.currentContext.read(authDataProvider).userId}");
+    // print(url);
+    // print("Var $variation");
+    // print("Var $productId");
+    // print("Var $quantity");
+    // print("Var ${Keys.navKey.currentContext.read(authDataProvider).token}");
+    // print("Var ${Keys.navKey.currentContext.read(authDataProvider).userId}");
+
     try {
       final response = await http.post(
         Uri.parse(url),

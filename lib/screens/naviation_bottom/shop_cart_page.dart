@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/providers/auth.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/screens/shipping_information.dart';
-import 'package:gomalgy/providers/shop_cart_provider.dart';
-import 'package:gomalgy/widget/shop_card/shop_cart_items_container.dart';
+import 'package:gomlgy/providers/auth.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/screens/shipping_information.dart';
+import 'package:gomlgy/providers/shop_cart_provider.dart';
+import 'package:gomlgy/widget/shop_card/shop_cart_items_container.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 ShopCartProvider _shopCartProvider = new ShopCartProvider();

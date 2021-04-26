@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/screens/details_prodect/details_page.dart';
+import 'package:gomlgy/screens/details_prodect/details_page.dart';
 
 import '../rating.dart';
 import '../../helpers/base_url.dart' as baseurl;

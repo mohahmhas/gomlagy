@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/screens/user/orderdetailshistory.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/screens/user/orderdetailshistory.dart';
 
 class HistoryTemp extends StatelessWidget {
   String code;

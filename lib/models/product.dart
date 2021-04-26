@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:gomalgy/helpers/http_exception.dart';
+import 'package:gomlgy/helpers/http_exception.dart';
 import 'package:http/http.dart' as http;
 
 class ProductDetails {

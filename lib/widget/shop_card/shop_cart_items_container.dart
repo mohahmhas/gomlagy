@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/screens/naviation_bottom/shop_cart_page.dart';
+import 'package:gomlgy/screens/naviation_bottom/shop_cart_page.dart';
 import '../../helpers/base_url.dart' as baseurl;
-import 'package:gomalgy/providers/shop_cart_provider.dart';
+import 'package:gomlgy/providers/shop_cart_provider.dart';
 
 class ShopCartItemsContainer extends StatelessWidget {
   final String productname;

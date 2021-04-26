@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter/material.dart';
-import 'package:gomalgy/helpers/keys.dart';
+import 'package:gomlgy/helpers/keys.dart';
 import '../models/home_categories_model.dart';
 import 'package:http/http.dart' as http;
 import '../helpers/http_exception.dart';

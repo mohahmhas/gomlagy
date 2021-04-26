@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/providers/auth.dart';
-import 'package:gomalgy/providers/localization/app_language.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/screens/account_information/account_information_page.dart';
-import 'package:gomalgy/screens/my_wishlist_screen.dart';
-import 'package:gomalgy/screens/naviation_bottom/warrantly.dart';
-import 'package:gomalgy/screens/outhantication/log_screen.dart';
-import 'package:gomalgy/screens/user/history.dart';
-import 'package:gomalgy/screens/wallet/Wallet_page.dart';
+import 'package:gomlgy/providers/auth.dart';
+import 'package:gomlgy/providers/localization/app_language.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/screens/account_information/account_information_page.dart';
+import 'package:gomlgy/screens/my_wishlist_screen.dart';
+import 'package:gomlgy/screens/naviation_bottom/warrantly.dart';
+import 'package:gomlgy/screens/outhantication/log_screen.dart';
+import 'package:gomlgy/screens/user/history.dart';
+import 'package:gomlgy/screens/wallet/Wallet_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 class UserNav extends StatefulWidget {
   @override
@@ -38,11 +39,22 @@ class _UserNavState extends State<UserNav> {
                   //     context,
                   //     MaterialPageRoute(
                   //         builder: (context) => MyWishListScreen()));
-                  Navigator.pushNamed(
+                  /* Navigator.pushNamed(
                       context,
                       context.read(authDataProvider).isAuth
                           ? MyWishListScreen.id
                           : LoginScreen.id);
+
+*/
+                  Navigator.push(
+                      context,
+                      WaveTransition(
+                        child: context.read(authDataProvider).isAuth
+                            ? MyWishListScreen()
+                            : LoginScreen(),
+                        center: FractionalOffset(0.90, 0.90),
+                        duration: Duration(milliseconds: 3000), // optional
+                      ));
                 }),
             SizedBox(
               height: 10,
@@ -54,11 +66,22 @@ class _UserNavState extends State<UserNav> {
                 // Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => HistoryPage()));
                 //
-                Navigator.pushNamed(
+                /*     Navigator.pushNamed(
                     context,
                     context.read(authDataProvider).isAuth
                         ? HistoryPage.id
                         : LoginScreen.id);
+*/
+
+                Navigator.push(
+                    context,
+                    WaveTransition(
+                      child: context.read(authDataProvider).isAuth
+                          ? HistoryPage()
+                          : LoginScreen(),
+                      center: FractionalOffset(0.90, 0.90),
+                      duration: Duration(milliseconds: 3000), // optional
+                    ));
               },
             ),
             SizedBox(
@@ -70,11 +93,22 @@ class _UserNavState extends State<UserNav> {
                 onpressed: () {
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => WalletPage()));
-                  Navigator.pushNamed(
+                  /*      Navigator.pushNamed(
                       context,
                       context.read(authDataProvider).isAuth
                           ? WalletPage.id
                           : LoginScreen.id);
+                  */
+
+                  Navigator.push(
+                      context,
+                      WaveTransition(
+                        child: context.read(authDataProvider).isAuth
+                            ? WalletPage()
+                            : LoginScreen(),
+                        center: FractionalOffset(0.90, 0.90),
+                        duration: Duration(milliseconds: 3000), // optional
+                      ));
                 }),
             SizedBox(
               height: 10,
@@ -88,11 +122,22 @@ class _UserNavState extends State<UserNav> {
                 //     context,
                 //     MaterialPageRoute(
                 //         builder: (context) => AccountInformationPage()));
-                Navigator.pushNamed(
+                /*              Navigator.pushNamed(
                     context,
                     context.read(authDataProvider).isAuth
                         ? AccountInformationPage.id
                         : LoginScreen.id);
+*/
+
+                Navigator.push(
+                    context,
+                    WaveTransition(
+                      child: context.read(authDataProvider).isAuth
+                          ? AccountInformationPage()
+                          : LoginScreen(),
+                      center: FractionalOffset(0.90, 0.90),
+                      duration: Duration(milliseconds: 3000), // optional
+                    ));
               },
             ),
             SizedBox(
@@ -102,12 +147,24 @@ class _UserNavState extends State<UserNav> {
                 name: AppLocalizations.of(context).translate('warranty'),
                 icon: Icons.person,
                 onpressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                  /*    Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
-                          context.read(authDataProvider).isAuth
+                         context.read(authDataProvider).isAuth
                               ? WarrantlyRequests(AppLocalizations.of(context)
                                   .translate('warranty'))
                               : LoginScreen()));
+*/
+
+                  Navigator.push(
+                      context,
+                      WaveTransition(
+                        child: context.read(authDataProvider).isAuth
+                            ? WarrantlyRequests(AppLocalizations.of(context)
+                                .translate('warranty'))
+                            : LoginScreen(),
+                        center: FractionalOffset(0.90, 0.90),
+                        duration: Duration(milliseconds: 3000), // optional
+                      ));
                 }),
             SizedBox(
               height: 10,

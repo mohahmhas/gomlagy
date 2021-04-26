@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/helpers/keys.dart';
-import 'package:gomalgy/providers/account_information.dart';
+import 'package:gomlgy/helpers/keys.dart';
+import 'package:gomlgy/providers/account_information.dart';
 import '../helpers/base_url.dart' as baseurl;
 import 'package:http/http.dart' as http;
 import 'dart:convert';

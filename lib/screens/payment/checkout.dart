@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gomalgy/providers/auth.dart';
-import 'package:gomalgy/providers/checkout_provider.dart';
-import 'package:gomalgy/providers/shop_cart_provider.dart';
-import 'package:gomalgy/screens/outhantication/log_screen.dart';
-import 'package:gomalgy/screens/payment/card_Payment.dart';
-import 'package:gomalgy/screens/user/history.dart';
-import 'package:gomalgy/widget/shop_card/custom_payment_widget.dart';
-import 'package:gomalgy/widget/text_copon.dart';
+import 'package:gomlgy/providers/auth.dart';
+import 'package:gomlgy/providers/checkout_provider.dart';
+import 'package:gomlgy/providers/shop_cart_provider.dart';
+import 'package:gomlgy/screens/outhantication/log_screen.dart';
+import 'package:gomlgy/screens/payment/card_Payment.dart';
+import 'package:gomlgy/screens/user/history.dart';
+import 'package:gomlgy/widget/shop_card/custom_payment_widget.dart';
+import 'package:gomlgy/widget/text_copon.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 enum PaymentWays { paypal, visa, wallet, cash }
 
@@ -158,7 +159,14 @@ class _CheckOutState extends State<CheckOut> {
                 'https://www.google.com/search?q=riverpod&authuser=0&sxsrf=ALeKk01B8lsCJkfigMF5PzJ-mYWnmyNx0g%3A1617639039850&source=hp&ei=fzZrYIPPMfTOgwft-4PIDA&iflsig=AINFCbYAAAAAYGtEj_w90-UaywDGbYQTAPQ31qTLyBei&oq=&gs_lcp=Cgdnd3Mtd2l6EAEYAzIHCCMQ6gIQJzIHCC4Q6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIJCCMQ6gIQJxATMgkIIxDqAhAnEBMyBwgjEOoCECcyCQgjEOoCECcQEzIHCCMQ6gIQJ1AAWABgoCBoAXAAeACAAQCIAQCSAQCYAQCqAQdnd3Mtd2l6sAEK&sclient=gws-wiz');
 
       case PaymentWays.visa:
-        return Navigator.pushNamed(context, CardPayment.id);
+        //return Navigator.pushNamed(context, CardPayment.id);
+        return Navigator.push(
+            context,
+            WaveTransition(
+                child: CardPayment(),
+                center: FractionalOffset(0.90, 0.90),
+                duration: Duration(milliseconds: 3000) // optional
+                ));
       case PaymentWays.cash:
         // print("switch");
         // print(context.read(CartItemDataProvider).TotalPrice);
@@ -173,7 +181,14 @@ class _CheckOutState extends State<CheckOut> {
           if (value == true) {
             Fluttertoast.showToast(msg: "Done");
             //     print("in if");
-            return Navigator.pushNamed(context, HistoryPage.id);
+            //return Navigator.pushNamed(context, HistoryPage.id);
+            return Navigator.push(
+                context,
+                WaveTransition(
+                    child: HistoryPage(),
+                    center: FractionalOffset(0.90, 0.90),
+                    duration: Duration(milliseconds: 3000) // optional
+                    ));
           } else {
             //     print("in else");
             Fluttertoast.showToast(msg: "some thing went wrong!!");

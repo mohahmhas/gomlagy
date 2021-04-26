@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:gomalgy/helpers/base_url.dart' as baseurl;
-import 'package:gomalgy/helpers/http_exception.dart';
-import 'package:gomalgy/helpers/keys.dart';
-import 'package:gomalgy/models/history_model.dart';
-import 'package:gomalgy/providers/auth.dart';
+import 'package:gomlgy/helpers/base_url.dart' as baseurl;
+import 'package:gomlgy/helpers/http_exception.dart';
+import 'package:gomlgy/helpers/keys.dart';
+import 'package:gomlgy/models/history_model.dart';
+import 'package:gomlgy/providers/auth.dart';
 import 'package:http/http.dart' as http;
 import 'auth.dart';
 

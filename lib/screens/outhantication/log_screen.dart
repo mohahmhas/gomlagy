@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/screens/outhantication/regist.dart';
-import 'package:gomalgy/screens/outhantication/send_code.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/screens/outhantication/regist.dart';
+import 'package:gomlgy/screens/outhantication/send_code.dart';
 
-import 'package:gomalgy/widget/text_filed_outh.dart';
-import 'package:gomalgy/providers/auth.dart';
+import 'package:gomlgy/widget/text_filed_outh.dart';
+import 'package:gomlgy/providers/auth.dart';
 
 import 'forget_password.dart';
 
@@ -78,7 +78,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               decoration: BoxDecoration(
                                 border: Border(
                                   left: BorderSide(
-                                      color: Colors.indigo, width: 5),
+                                      color: Colors.indigo, width: 1),
+                                  right: BorderSide(
+                                      color: Colors.indigo, width: 1),
                                 ),
                               ),
                               child: Form(

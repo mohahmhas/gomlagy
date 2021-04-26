@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/helpers/http_exception.dart';
-import 'package:gomalgy/widget/product_card/product_cart_%20vertical.dart';
+import 'package:gomlgy/helpers/http_exception.dart';
+import 'package:gomlgy/widget/product_card/product_cart_%20vertical.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../helpers/base_url.dart' as baseurl;

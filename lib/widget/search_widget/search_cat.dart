@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/widget/product_card/product_item_vertical.dart';
+import 'package:gomlgy/widget/product_card/product_item_vertical.dart';
 import '../../providers/search_provider.dart';
 // '/products/search?key=&scope=product&page=1'
 

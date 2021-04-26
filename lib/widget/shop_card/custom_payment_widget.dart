@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gomalgy/screens/payment/checkout.dart';
+import 'package:gomlgy/screens/payment/checkout.dart';
 
 class CustomPaymentWidget extends StatefulWidget {
   String image;

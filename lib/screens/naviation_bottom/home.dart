@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/providers/home_categories.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
-import 'package:gomalgy/widget/home_category_widgets/home_horizental_cats.dart';
-import 'package:gomalgy/widget/home_category_widgets/home_horizental_cats_grid.dart';
-import 'package:gomalgy/widget/home_category_widgets/home_vertical_cat.dart';
-import 'package:gomalgy/widget/home_category_widgets/image_slider_first_item.dart';
-import 'package:gomalgy/providers/home_categories.dart' as homeCat;
+import 'package:gomlgy/providers/home_categories.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/widget/home_category_widgets/home_horizental_cats.dart';
+import 'package:gomlgy/widget/home_category_widgets/home_horizental_cats_grid.dart';
+import 'package:gomlgy/widget/home_category_widgets/home_vertical_cat.dart';
+import 'package:gomlgy/widget/home_category_widgets/image_slider_first_item.dart';
+import 'package:gomlgy/providers/home_categories.dart' as homeCat;
 
 import 'package:flutter/rendering.dart';
 
@@ -110,7 +110,7 @@ class Home extends StatelessWidget {
                             child: Text(
                               AppLocalizations.of(context)
                                   .translate('todays_deal'),
-                             // textAlign: TextAlign.left,
+                              // textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.orange[900],
@@ -146,7 +146,7 @@ class Home extends StatelessWidget {
                                   fontSize: 20,
                                   color: Colors.orange[900],
                                   fontWeight: FontWeight.bold),
-                             // textAlign: TextAlign.left,
+                              // textAlign: TextAlign.left,
                             ),
                           ),
                           HomeHorizentalGridCat(

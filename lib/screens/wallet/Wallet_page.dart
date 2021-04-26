@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:gomalgy/helpers/base_url.dart' as baseurl;
-import 'package:gomalgy/helpers/keys.dart';
-import 'package:gomalgy/providers/auth.dart';
-import 'package:gomalgy/providers/localization/app_localizations.dart';
+import 'package:gomlgy/helpers/base_url.dart' as baseurl;
+import 'package:gomlgy/helpers/keys.dart';
+import 'package:gomlgy/providers/auth.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_riverpod/flutter_riverpod.dart';

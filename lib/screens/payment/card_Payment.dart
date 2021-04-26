@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gomalgy/providers/shop_cart_provider.dart';
-import 'package:gomalgy/widget/text_copon.dart';
+import 'package:gomlgy/providers/shop_cart_provider.dart';
+import 'package:gomlgy/widget/text_copon.dart';
 
 class CardPayment extends StatefulWidget {
   static String id = 'CardPayment';
