@@ -6,6 +6,7 @@ import 'package:gomlgy/screens/shipping_information.dart';
 import 'package:gomlgy/providers/shop_cart_provider.dart';
 import 'package:gomlgy/widget/shop_card/shop_cart_items_container.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:wave_transition/wave_transition.dart';
 
 ShopCartProvider _shopCartProvider = new ShopCartProvider();
 
@@ -125,14 +126,25 @@ class _TotalContainerBuilderState extends State<TotalContainerBuilder> {
               return MaterialButton(
                 onPressed: () {
                   if (TotalDataProvider.TotalPrice != 0.0) {
+                    // Navigator.push(
+                    //   (context),
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ShippingInformation(),
+                    //   ),
+                    // );
+
                     Navigator.push(
-                      (context),
-                      MaterialPageRoute(
-                        builder: (context) => ShippingInformation(),
-                      ),
-                    );
+                        context,
+                        WaveTransition(
+                            child: ShippingInformation(),
+                            center: FractionalOffset(0.90, 0.90),
+                            duration: Duration(milliseconds: 3000) // optional
+                            ));
                   } else {
-                    Fluttertoast.showToast(msg: "Cart is empty");
+                    Fluttertoast.showToast(
+                      msg: "Cart is empty",
+                      gravity: ToastGravity.BOTTOM,
+                    );
                   }
                 },
                 child: Text(
