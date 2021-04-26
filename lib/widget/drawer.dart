@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gomalgy/helpers/base_url.dart';
+import 'package:gomalgy/screens/details_prodect/details_page.dart';
 import 'package:gomalgy/screens/outhantication/log_screen.dart';
 import 'package:gomalgy/screens/outhantication/regist.dart';
 import 'package:gomalgy/providers/drawer_provider.dart';
+import 'package:gomalgy/screens/seeAll_products.dart';
 import '../providers/auth.dart';
 
 class CustomDrawer extends ConsumerWidget {
@@ -112,7 +115,17 @@ class drawerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        //id
+        print('id printed $id'); //id
+        print('id printed $name'); //name
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => SeeAllProducts(
+              appBarName: name,
+              // https://www.gomlgy.com/api/v1/products/sub-category/
+              url: Urls.api+'/products/sub-category/'+id.toString(),
+            ),
+          ),
+        );
       },
       child: ListTile(
         leading: Image.network(

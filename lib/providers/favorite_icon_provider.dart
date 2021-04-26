@@ -101,7 +101,7 @@ class FavoriteIconProvider extends ChangeNotifier {
           headers: Map<String, String>.from({
             'Content-Type': 'application/json ;charset=UTF-8',
             'Charset': 'utf-8',
-            'Authorization': 'Bearer ' +
+            'Authorization': 'Bearer'+
                 Keys.navKey.currentContext.read(authDataProvider).token,
           }),
           body: json.encode({
@@ -125,7 +125,7 @@ class FavoriteIconProvider extends ChangeNotifier {
       }
       notifyListeners();
     } catch (e) {
-      print("E  " + e);
+      print("E  " + e.toString());
       throw e;
     }
   }

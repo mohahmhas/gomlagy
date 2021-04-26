@@ -41,6 +41,7 @@ class _SeeAllProductsState extends State<SeeAllProducts> {
               child: FutureBuilder<List<SeeAllDataModel>>(
                 future: CategoriesApi.SeeAllProducts(widget.url),
                 builder: (context, AsyncSnapshot snapshot) {
+                  print('url = ${widget.url}') ;
                   if (snapshot.hasData) {
                     List<Widget> list = [];
                     list = List.from(snapshot.data.take(20).map((e) {

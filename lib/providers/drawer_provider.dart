@@ -39,7 +39,7 @@ class DrawerData with ChangeNotifier {
       // print(prodactData);
       var data = (extractedData['data'] as List).map((data) {
         final extractedData = data as Map<String, dynamic>;
-
+        print('drawer item id = ${extractedData['id']}');
         return DrawerModel(
           name: extractedData['name'],
           id: extractedData['id'],
