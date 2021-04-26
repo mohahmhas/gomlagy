@@ -144,8 +144,8 @@ class CatData with ChangeNotifier {
 
   Future<List> fetchAndSetWishlistData(String urlString) async {
     var url = baseurl.Urls.api +
-        urlString +
-        '/' +
+        urlString + /* +
+        '/' + */
         Keys.navKey.currentContext.read(authDataProvider).userId;
     try {
       final response = await http.get(

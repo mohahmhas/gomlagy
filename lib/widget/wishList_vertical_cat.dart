@@ -18,10 +18,10 @@ class WishListVerticalCats extends ConsumerWidget {
           if (snaptshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           }
-          print(snaptshot.data);
+          print('snaptshot.data = ${snaptshot.data}');
           List<Widget> list = [];
           list = List.from(snaptshot.data.take(countOfItems).map((e) {
-            print('name = ${e.name}');
+            print('name-- = ${e.name}');
             return ProductItemVertical(
               name: e.name,
               rating: e.rating,

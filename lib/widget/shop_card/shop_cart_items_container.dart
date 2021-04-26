@@ -110,7 +110,8 @@ class ShopCartItemsContainer extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        color: Color(int.parse(color)),
+                       // color: Color(int.parse(color)),
+                       color: Colors.grey[300] ,
                         height: 30,
                         width: 30,
                       ),
