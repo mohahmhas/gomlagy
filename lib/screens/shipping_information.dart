@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gomlgy/screens/payment/fatwora.dart';
+import 'package:wave_transition/wave_transition.dart';
 import '../providers/account_information.dart';
 import 'package:gomlgy/providers/localization/app_localizations.dart';
 
@@ -109,12 +110,25 @@ class _ShippingInformationState extends State<ShippingInformation> {
             onTap: () {
               print('id = ${context.read(accountDataProvider).id}');
               context.read(accountDataProvider).id > 0
-                  ? Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Fatwora(
+                  ?
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => Fatwora(
+                  //           addressDetails: addressDetails,
+                  //           cityName: cityName,
+                  //           country: country,
+                  //         )))
+
+                  Navigator.push(
+                      context,
+                      WaveTransition(
+                          child: Fatwora(
                             addressDetails: addressDetails,
                             cityName: cityName,
                             country: country,
-                          )))
+                          ),
+                          center: FractionalOffset(0.90, 0.90),
+                          duration: Duration(milliseconds: 3000) // optional
+                          ))
                   : Fluttertoast.showToast(msg: 'choose one');
             },
             child: Container(
