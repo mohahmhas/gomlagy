@@ -4,7 +4,7 @@ import 'package:gomlgy/providers/auth.dart';
 import 'package:gomlgy/providers/localization/app_localizations.dart';
 import 'package:gomlgy/screens/outhantication/log_screen.dart';
 import 'package:gomlgy/screens/outhantication/send_code.dart';
-import 'package:gomlgy/widget/text_filed_outh.dart';
+import 'package:gomlgy/widget/text_field_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //C:\Users\moham\AppData\Local\Android\Sdk\.temp\PackageOperation02\unzip\platform-tools
@@ -21,6 +21,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _email, _password, _userName;
   @override
   Widget build(BuildContext context) {
+    final mediaQuerySize = MediaQuery.of(context).size;
+
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -31,23 +33,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: Center(
-                    child: Text(
-                  AppLocalizations.of(context).translate('my_account'),
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                    //     child: Text(
+                    //   AppLocalizations.of(context).translate('my_account'),
+                    //   style: TextStyle(color: Colors.white, fontSize: 20),
+                    // )
+                    child: Image.asset(
+                  'assets/gomlgy_logo.png',
+                  width: mediaQuerySize.width * 0.5,
+                  height: mediaQuerySize.height * 0.1,
+                  // scale: 5,
                 )),
               ),
               SizedBox(
-                height: 150,
+                height: mediaQuerySize.height * 0.05,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     AppLocalizations.of(context).translate('sign_up'),
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontFamily: 'Lobster'),
                   ),
                 ],
               ),
+              SizedBox(
+                height: mediaQuerySize.height * 0.02,
+              )
             ],
           ),
           Padding(
@@ -82,13 +96,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  TextFieldsOuth(
+                                  TextFieldsAuth(
                                     onClick: (value) {
                                       setState(() {
                                         _userName = value;
                                       });
                                     },
-                                    valed: (value) {
+                                    validation: (value) {
                                       if (value.isEmpty == true) {
                                         return AppLocalizations.of(context)
                                             .translate('name_is_required');
@@ -101,8 +115,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     hint: AppLocalizations.of(context)
                                         .translate('name'),
                                   ),
-                                  TextFieldsOuth(
-                                    valed: (value) {
+                                  TextFieldsAuth(
+                                    validation: (value) {
                                       String pattern =
                                           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
                                       RegExp regExp = new RegExp(pattern);
@@ -124,8 +138,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         AppLocalizations.of(context)
                                             .translate('email'),
                                   ),
-                                  TextFieldsOuth(
-                                    valed: (value) {
+                                  TextFieldsAuth(
+                                    obscureText: true,
+                                    validation: (value) {
                                       String pattern = r'^(?=.*?[0-9]).{6,}$';
                                       RegExp regExp = new RegExp(pattern);
 
@@ -153,26 +168,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   SizedBox(
                                     height: height * 0.04,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 25, right: 25),
+                                  InkWell(
+                                    onTap: () {
+                                      _submit(context);
+                                    },
                                     child: Container(
-                                      height: height * 0.06,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            primary:
-                                                Theme.of(context).primaryColor,
-                                            textStyle:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          onPressed: () {
-                                            _submit(context);
-                                          },
-                                          child: Center(
-                                              child: Center(
-                                                  child: Text(AppLocalizations
-                                                          .of(context)
-                                                      .translate('sign_up'))))),
+                                      width: MediaQuery.of(context).size.width,
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical:
+                                              mediaQuerySize.height * 0.02,
+                                          horizontal: 30),
+                                      child: Center(
+                                        child: Text(
+                                            AppLocalizations
+                                                    .of(context)
+                                                .translate('sign_up'),
+                                            style: TextStyle(
+                                                fontFamily: 'Lobster',
+                                                fontSize: MediaQuery.of(context)
+                                                        .textScaleFactor *
+                                                    18,
+                                                color: Colors.white)),
+                                      ),
+                                      decoration: BoxDecoration(
+                                        // gradient: LinearGradient(
+                                        //     colors: [
+                                        //       primaryColor,
+                                        //       secondaryColor
+                                        //     ]),
+                                        color: Theme.of(context).primaryColor,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                     ),
                                   ),
                                   SizedBox(

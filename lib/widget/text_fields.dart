@@ -30,62 +30,59 @@ class TextFields extends StatelessWidget {
     // _focusNode.addListener(() {
     //   onTap();
     // });
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(top: 32.0, bottom: 0, right: 8, left: 8),
-            child: Container(
-                height: 40,
-                child: Consumer(builder: (ctx, watch, child) {
-                  return TextFormField(
-                    onChanged: (val) {
-                      print(val);
-                      context
-                          .read(provider)
-                          .fetchAndSetdData(val, fromSearch: true);
-                    },
-                    // focusNode: _focusNode,
-                    onTap: onTap,
-                    // ignore: missing_return
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return _errorMassage(hint);
-                      }
-                    },
-                    onSaved: onClick,
-                    obscureText: hint == 'Enter your Password' ? true : false,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        icon,
-                        color: Colors.black,
-                      ), //icon
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: hint,
+    return Padding(
+      padding: const EdgeInsets.only(right: 18 , left: 18 ),
+      child: Container(
+        
+          height: 50,
+          child: Consumer(builder: (ctx, watch, child) {
+            return TextFormField(
+              textAlignVertical: TextAlignVertical.center,
+              onChanged: (val) {
+                print(val);
+                context
+                    .read(provider)
+                    .fetchAndSetdData(val, fromSearch: true);
+              },
+              // focusNode: _focusNode,
+              onTap: onTap,
+              // ignore: missing_return
+              validator: (value) {
+                if (value.isEmpty) {
+                  return _errorMassage(hint);
+                }
+              },
+              onSaved: onClick,
+              obscureText: hint == 'Enter your Password' ? true : false,
+              decoration: InputDecoration(
+                
+                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
+                prefixIcon: Icon(
+                  icon,
+                  color: Colors.black,
+                  size: 30,
+                ), //icon
+                filled: true,
+                fillColor: Colors.white,
+                hintText: hint,
 
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blueGrey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blueGrey),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
-                      ),
-                      border: InputBorder.none,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueGrey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueGrey),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                border: InputBorder.none,
 
-                      labelStyle: TextStyle(
-                        color: Colors.white70,
-                      ),
-                    ),
-                  );
-                })),
-          ),
-        ),
-      ],
+                labelStyle: TextStyle(
+                  color: Colors.white70,
+                ),
+              ),
+            );
+          })),
     );
   }
 }

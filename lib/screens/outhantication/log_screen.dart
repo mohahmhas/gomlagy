@@ -5,7 +5,7 @@ import 'package:gomlgy/providers/localization/app_localizations.dart';
 import 'package:gomlgy/screens/outhantication/regist.dart';
 import 'package:gomlgy/screens/outhantication/send_code.dart';
 
-import 'package:gomlgy/widget/text_filed_outh.dart';
+import 'package:gomlgy/widget/text_field_auth.dart';
 import 'package:gomlgy/providers/auth.dart';
 
 import 'forget_password.dart';
@@ -105,8 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       padding: const EdgeInsets.only(top: 40.0),
                                       child: Column(
                                         children: [
-                                          TextFieldsOuth(
-                                            valed: (value) {
+                                          TextFieldsAuth(
+                                            validation: (value) {
                                               String pattern =
                                                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
                                               RegExp regExp =
@@ -126,10 +126,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                             },
                                             icon: Icons.email_outlined,
                                             hint: AppLocalizations.of(context)
-                                                .translate('email_is_required'),
+                                                .translate('email'),
                                           ),
-                                          TextFieldsOuth(
-                                            valed: (value) {
+                                          TextFieldsAuth(
+                                            obscureText: true,
+                                            validation: (value) {
                                               String pattern =
                                                   r'^(?=.*?[0-9]).{6,}$';
                                               RegExp regExp =

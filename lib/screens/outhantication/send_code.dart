@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gomlgy/providers/auth.dart';
 import 'package:gomlgy/providers/localization/app_localizations.dart';
 import 'package:gomlgy/screens/outhantication/log_screen.dart';
-import 'package:gomlgy/widget/text_filed_outh.dart';
+import 'package:gomlgy/widget/text_field_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SendCode extends StatefulWidget {
@@ -27,6 +27,8 @@ class _SendState extends State<SendCode> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuerySize = MediaQuery.of(context).size;
+
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -34,34 +36,31 @@ class _SendState extends State<SendCode> {
         children: [
           Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 50, left: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Gomlgy',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
+              Center(
+                  child: Image.asset(
+                'assets/gomlgy_logo.png',
+                width: mediaQuerySize.width * 0.5,
+                height: mediaQuerySize.height * 0.1,
+                // scale: 5,
+              )),
               SizedBox(
-                height: 150,
+                height: mediaQuerySize.height * 0.05,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 50, left: 10, bottom: 10),
-                    child: Text(
-                      AppLocalizations.of(context).translate('send_code'),
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
+                  Text(
+                    AppLocalizations.of(context).translate('send_code'),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontFamily: 'Lobster'),
                   ),
                 ],
               ),
+              SizedBox(
+                height: mediaQuerySize.height * 0.02,
+              )
             ],
           ),
           Padding(
@@ -91,13 +90,13 @@ class _SendState extends State<SendCode> {
                         padding: const EdgeInsets.only(top: 40.0),
                         child: Column(
                           children: [
-                            TextFieldsOuth(
+                            TextFieldsAuth(
                               onClick: (value) {
                                 setState(() {
                                   _code = value;
                                 });
                               },
-                              valed: (value) {
+                              validation: (value) {
                                 if (value.isEmpty == true) {
                                   return AppLocalizations.of(context)
                                       .translate('send_code');
@@ -111,28 +110,40 @@ class _SendState extends State<SendCode> {
                             SizedBox(
                               height: height * 0.04,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 25, right: 25),
+                            InkWell(
+                              onTap: () {
+                                _validate(context);
+                              },
                               child: Container(
-                                height: height * 0.06,
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Theme.of(context).primaryColor,
-                                      textStyle: TextStyle(color: Colors.white),
-                                    ),
-                                    onPressed: () {
-                                      _validate(context);
-                                      // Bottom Logins
-                                    },
-                                    child: Center(
-                                        child: Center(
-                                            child: Text(
-                                                AppLocalizations.of(context)
-                                                    .translate('confirm'))))),
+                                width: MediaQuery.of(context).size.width,
+                                margin: EdgeInsets.symmetric(horizontal: 10),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: mediaQuerySize.height * 0.02,
+                                    horizontal: 30),
+                                child: Center(
+                                  child: Text(
+                                      AppLocalizations.of(context)
+                                          .translate('confirm'),
+                                      style:
+                                          TextStyle(
+                                              fontFamily: 'Lobster',
+                                              fontSize: MediaQuery.of(context)
+                                                      .textScaleFactor *
+                                                  18,
+                                              color: Colors.white)),
+                                ),
+                                decoration: BoxDecoration(
+                                  // gradient: LinearGradient(
+                                  //     colors: [
+                                  //       primaryColor,
+                                  //       secondaryColor
+                                  //     ]),
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                               ),
                             ),
-                          ],
+                          ], //
                         ),
                       ),
                     ],

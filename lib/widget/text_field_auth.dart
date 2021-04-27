@@ -1,31 +1,20 @@
 import 'package:flutter/material.dart';
 
-class TextFieldsOuth extends StatelessWidget {
+class TextFieldsAuth extends StatelessWidget {
   final String hint;
   final IconData icon;
   final Function onClick;
-  final Function valed;
+  final Function validation;
   final Function change;
-  // ignore: missing_return
-  String _errorMassage(String str) {
-    switch (hint) {
-      case 'Enter your Email':
-        return 'Email is Required !';
+  final obscureText;
 
-      case 'Enter your Password':
-        return 'passwoed is Required !';
-
-      case 'Enter your Name':
-        return 'Name is Required !';
-    }
-  }
-
-  TextFieldsOuth(
+  TextFieldsAuth(
       {this.onClick,
       @required this.hint,
       @required this.icon,
-      this.valed,
-      this.change});
+      this.validation,
+      this.change,
+      this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +27,16 @@ class TextFieldsOuth extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.9,
             child: TextFormField(
               onChanged: change,
-              // ignore: missing_return
-              validator: valed,
-              // (value) {
-              //   if (value.isEmpty) {
-              //     return _errorMassage(hint);
-              //   }
-              // },
+              validator: validation,
               onSaved: onClick,
-
-              obscureText: icon == Icons.lock ? true : false,
+              obscureText: obscureText,
               decoration: InputDecoration(
                 prefixIcon: Icon(
                   icon,
                   color: Colors.black,
                 ), //icon
                 filled: true,
-                fillColor: Colors.grey,
+                fillColor: Colors.grey.withOpacity(0.3),
                 hintText: hint,
 
                 enabledBorder: OutlineInputBorder(
