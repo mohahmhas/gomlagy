@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gomlgy/helpers/keys.dart';
 import 'package:gomlgy/models/address.dart';
 import '../helpers/base_url.dart' as baseurl;
@@ -78,8 +79,12 @@ class AccountInformation with ChangeNotifier {
           "Profile information has been updated successfully") {
         print('updated');
         _name = name;
+        Keys.navKey.currentContext.read(authDataProvider).changeUserName(name);
         notifyListeners();
-      } else {}
+        Fluttertoast.showToast(msg: "Updated");
+      } else {
+        Fluttertoast.showToast(msg: "An Error occurred!");
+      }
     } catch (e) {
       print("E  " + e);
       throw e;

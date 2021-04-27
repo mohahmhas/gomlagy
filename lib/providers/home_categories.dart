@@ -144,7 +144,8 @@ class CatData with ChangeNotifier {
 
   Future<List> fetchAndSetWishlistData(String urlString) async {
     var url = baseurl.Urls.api +
-        urlString + /* +
+        urlString +
+        /* +
         '/' + */
         Keys.navKey.currentContext.read(authDataProvider).userId;
     try {
@@ -159,7 +160,6 @@ class CatData with ChangeNotifier {
       );
       //  print(response.body);
       final extractedData = json.decode(response.body) as Map<String, Object>;
-      print('extractedData = $extractedData');
       print('ef---------------------------');
 
       if (response.statusCode >= 400) {

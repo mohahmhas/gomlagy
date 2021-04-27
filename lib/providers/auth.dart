@@ -295,4 +295,18 @@ class Auth extends ChangeNotifier {
     print(timeToExpiry);
     _authTimer = Timer(Duration(seconds: timeToExpiry), logout);
   }
+
+  Future<void> changeUserName(String name) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    _user['name'] = name;
+    final userData = json.encode({
+      'token': _token,
+      'user': _user,
+      'expiryDate': _expiryDate.toIso8601String()
+    });
+
+    prefs.setString('userData', userData);
+    notifyListeners();
+  }
 }
