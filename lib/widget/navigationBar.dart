@@ -49,10 +49,16 @@ class _NavigatState extends State<Navigat> {
         elevation: 24.0,
         brightness: Brightness.light,
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text(
-          'Gomlagy',
-          style: TextStyle(color: Colors.white, fontSize: 24),
+        title: Image.asset(
+          'assets/gomlgy_logo.png',
+          width: 100,
+          height: 60,
+          // scale: 5,
         ),
+        //  Text(
+        //   'Gomlgy',
+        //   style: TextStyle(color: Colors.white, fontSize: 24),
+        // ),
         centerTitle: true,
         //leading: null,
         actions: [

@@ -19,10 +19,17 @@ class CustomDrawer extends ConsumerWidget {
     //final String image;
     List<Widget> list = [];
     list = List.from(context.read(drawerProvider).drawerData.map((e) {
-      return drawerItem(
-        id: e.id,
-        image: e.image,
-        name: e.name,
+      return Column(
+        children: [
+          drawerItem(
+            id: e.id,
+            image: e.image,
+            name: e.name,
+          ),
+          Divider(
+            thickness: 0.5,
+          ),
+        ],
       );
     }));
     return Container(
@@ -128,11 +135,21 @@ class drawerItem extends StatelessWidget {
         );
       },
       child: ListTile(
-        leading: Image.network(
-          image,
-          scale: 20,
+        leading: CircleAvatar(
+          radius: 20,
+          backgroundColor: Colors.white,
+          child: Image.network(
+            image,
+            scale: 20,
+          ),
         ),
-        title: Text(name),
+        title: Text(
+          name,
+          textAlign: TextAlign.right,
+          style: TextStyle(
+            fontFamily: 'Droid',
+          ),
+        ),
       ),
     );
   }

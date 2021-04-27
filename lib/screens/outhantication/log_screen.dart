@@ -22,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _email, _password;
   @override
   Widget build(BuildContext context) {
+    final mediaQuerySize = MediaQuery.of(context).size;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
@@ -38,23 +39,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 50),
                       child: Center(
-                          child: Text(
-                        AppLocalizations.of(context).translate('my_account'),
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                          //     child: Text(
+                          //   AppLocalizations.of(context).translate('sign_in'),
+                          //   style: TextStyle(color: Colors.white, fontSize: 20),
+                          // )
+
+                          child: Image.asset(
+                        'assets/gomlgy_logo.png',
+                        width: 100,
+                        height: 60,
+                        // scale: 5,
                       )),
                     ),
                     SizedBox(
-                      height: 150,
+                      height: mediaQuerySize.height * 0.1,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           AppLocalizations.of(context).translate('sign_in'),
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: TextStyle(color: Colors.white, fontSize: 30),
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: mediaQuerySize.height * 0.02,
+                    )
                   ],
                 ),
                 //*********************************************************** */
