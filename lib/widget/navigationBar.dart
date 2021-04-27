@@ -109,8 +109,10 @@ class _NavigatState extends State<Navigat> {
           child: Align(
               alignment: Alignment.bottomCenter,
               child: CurvedBottomNavigation(
+                fabMargin: 6,
+                iconSize: 27,
                 navHeight: 50,
-                fabSize: 50,
+                fabSize: 45,
                 bgColor: Theme.of(context).primaryColor,
                 fabBgColor: Theme.of(context).primaryColor,
                 selected: navPos,
@@ -120,11 +122,11 @@ class _NavigatState extends State<Navigat> {
                   });
                 },
                 items: [
-                  Icon(Icons.home, color: Colors.white),
+                  Icon(Icons.home, color: Colors.white ),
                   Icon(Icons.view_module_rounded, color: Colors.white),
-                  Icon(Icons.search, color: Colors.white),
-                  Icon(Icons.shopping_cart, color: Colors.white),
-                  Icon(Icons.account_circle_sharp, color: Colors.white),
+                  Icon(Icons.search, color: Colors.white ),
+                  Icon(Icons.shopping_cart, color: Colors.white ),
+                  Icon(Icons.account_circle_sharp, color: Colors.white ),
                 ],
               )),
         )
