@@ -47,13 +47,14 @@ class HomeHorizentalGridCat extends ConsumerWidget {
 
           return Wrap(
             direction: Axis.horizontal,
+
             crossAxisAlignment: WrapCrossAlignment.start,
 
             alignment: WrapAlignment.start,
 
             //textDirection: TextDirection.rtl,
             runAlignment: WrapAlignment.start,
-            runSpacing: 3.0,
+            runSpacing: 5.0,
             spacing: 5.0,
 
             // verticalDirection: VerticalDirection.up,

@@ -36,7 +36,7 @@ class ProductCardvertical extends StatelessWidget {
       },
       child: SizedBox(
         height: MediaQuery.of(context).size.height * .35,
-        width: MediaQuery.of(context).size.width / 2.4,
+        width: MediaQuery.of(context).size.width / 2.1,
         child: Column(
           children: [
             Flexible(
