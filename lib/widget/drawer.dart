@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gomlgy/helpers/base_url.dart';
+import 'package:gomlgy/providers/localization/app_localizations.dart';
 import 'package:gomlgy/screens/details_prodect/details_page.dart';
 import 'package:gomlgy/screens/outhantication/log_screen.dart';
 import 'package:gomlgy/screens/outhantication/regist.dart';
@@ -73,14 +74,22 @@ class CustomDrawer extends ConsumerWidget {
                                     Navigator.pushNamed(
                                         context, LoginScreen.id);
                                   },
-                                  child: Text('SIGN IN '),
+                                  child: Text(
+                                    AppLocalizations.of(context)
+                                        .translate('sign_in'),
+                                  ),
                                 ),
                                 GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, RegisterScreen.id);
-                                    },
-                                    child: Text('/REGISTER'))
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, RegisterScreen.id);
+                                  },
+                                  child: Text(
+                                    '/' +
+                                        AppLocalizations.of(context)
+                                            .translate('register'),
+                                  ),
+                                )
                               ],
                             );
                     }),

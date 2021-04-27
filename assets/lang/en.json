@@ -191,7 +191,8 @@
     "no":"No",
     "checkout":"Checkout",
 
-    "password_is_required":"Password Is Required" 
- 
+    "password_is_required":"Password Is Required", 
+    "register":"Register"
+
      }
      

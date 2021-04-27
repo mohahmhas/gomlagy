@@ -95,7 +95,7 @@
     "shipping_cost":"تكلفة الشحن",
     "discount":"خصم",
     "grand_total":"المجموع الكلي",
-    "sign_up":"سجل",
+    "sign_up":"انشاء حساب",
     "confirm_password":"تأكيد كلمة المرور",
     "reset_password":"إعادة تعيين كلمة المرور",
     "confirm":"تأكيد",
@@ -193,7 +193,8 @@
     "no":"لا",
     "checkout":"الدفع",
 
-    "password_is_required":"كلمة المرور مطلوبه" 
+    "password_is_required":"كلمة المرور مطلوبه", 
+    "register":"تسجيل حساب"
 
     }
     

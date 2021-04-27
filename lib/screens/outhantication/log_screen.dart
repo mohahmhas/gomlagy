@@ -46,20 +46,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           child: Image.asset(
                         'assets/gomlgy_logo.png',
-                        width: 100,
-                        height: 60,
+                        width: mediaQuerySize.width * 0.5,
+                        height: mediaQuerySize.height * 0.1,
                         // scale: 5,
                       )),
                     ),
                     SizedBox(
-                      height: mediaQuerySize.height * 0.1,
+                      height: mediaQuerySize.height * 0.05,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           AppLocalizations.of(context).translate('sign_in'),
-                          style: TextStyle(color: Colors.white, fontSize: 30),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontFamily: 'Lobster'),
                         ),
                       ],
                     ),
@@ -164,29 +167,44 @@ class _LoginScreenState extends State<LoginScreen> {
                                           SizedBox(
                                             height: height * 0.04,
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 25, right: 25),
+                                          InkWell(
+                                            onTap: () {
+                                              _submit(context);
+                                            },
                                             child: Container(
-                                              height: height * 0.06,
-                                              child: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    primary: Theme.of(context)
-                                                        .primaryColor,
-                                                    textStyle: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                  onPressed: () {
-                                                    _submit(context);
-                                                  },
-                                                  child: Center(
-                                                      child: Center(
-                                                          child: Text(
-                                                              AppLocalizations.of(
-                                                                      context)
-                                                                  .translate(
-                                                                      'sign_in'))))),
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 10),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical:
+                                                      mediaQuerySize.height *
+                                                          0.02,
+                                                  horizontal: 30),
+                                              child: Center(
+                                                child: Text(
+                                                    AppLocalizations.of(context)
+                                                        .translate('sign_in'),
+                                                    style: TextStyle(
+                                                        fontFamily: 'Lobster',
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
+                                                                .textScaleFactor *
+                                                            18,
+                                                        color: Colors.white)),
+                                              ),
+                                              decoration: BoxDecoration(
+                                                // gradient: LinearGradient(
+                                                //     colors: [
+                                                //       primaryColor,
+                                                //       secondaryColor
+                                                //     ]),
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
                                             ),
                                           ),
                                           SizedBox(

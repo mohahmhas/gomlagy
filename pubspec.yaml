@@ -89,6 +89,9 @@ flutter:
     - family: Droid
       fonts:
         - asset: assets/fonts/Droid.ttf
+    - family: Lobster
+      fonts:
+        - asset: assets/fonts/Lobster.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
